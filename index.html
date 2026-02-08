@@ -135,8 +135,8 @@
                     <div class="benefit-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
                     </div>
-                    <h3>10 Chunking Strategies</h3>
-                    <p>Fixed token count, sentence-based, paragraph-based, table rows, key-value pairs, and more. Use overlap and sliding windows for context continuity.</p>
+                    <h3>11 Chunking Strategies</h3>
+                    <p>Fixed token count, sentence-based, paragraph-based, regex-based, table rows, key-value pairs, and more. Use overlap and sliding windows for context continuity.</p>
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">
@@ -178,7 +178,7 @@
                     </h3>
                     <ul class="feature-list">
                         <li>8 semantic cell types (Text, Code, List, Table, Hyperlink, Meta, Binary, Image)</li>
-                        <li>10 chunking strategies with configurable overlap</li>
+                        <li>11 chunking strategies with configurable overlap</li>
                         <li>Sliding window overlap for context continuity</li>
                         <li>Context prefix injection per chunk</li>
                         <li>Batch processing for high-throughput workloads</li>
@@ -389,7 +389,7 @@
                         <tr>
                             <td>Chunking strategies</td>
                             <td>Build each one yourself</td>
-                            <td class="highlight">10 strategies, configurable</td>
+                            <td class="highlight">11 strategies, configurable</td>
                         </tr>
                         <tr>
                             <td>Embedding providers</td>
@@ -483,7 +483,20 @@ curl -X POST http://localhost:8400/v1.0/endpoints/ep_default/process/batch \
     { "Type": "Text", "Text": "First document content..." },
     { "Type": "Code", "Text": "def hello(): return \"world\"" },
     { "Type": "Table", "Text": "Name,Age\nAlice,30\nBob,25" }
-  ]'</span></code></pre>
+  ]'</span>
+
+<span class="t-comment"># Regex-based chunking (split on Markdown headings)</span>
+curl -X POST http://localhost:8400/v1.0/endpoints/ep_default/process \
+  -H <span class="t-string">"Authorization: Bearer default"</span> \
+  -H <span class="t-string">"Content-Type: application/json"</span> \
+  -d <span class="t-string">'{
+    "Type": "Text",
+    "Text": "# Introduction\nWelcome to the guide.\n# Setup\nInstall the dependencies.\n# Usage\nRun the command.",
+    "ChunkingConfiguration": {
+      "Strategy": "RegexBased",
+      "RegexPattern": "^# "
+    }
+  }'</span></code></pre>
                         </div>
                     </div>
                     <div class="tab-panel" id="tab-python">
@@ -513,7 +526,18 @@ curl -X POST http://localhost:8400/v1.0/endpoints/ep_default/process/batch \
     <span class="t-comment"># Access chunks and embeddings</span>
     <span class="t-keyword">for</span> chunk <span class="t-keyword">in</span> result[<span class="t-string">"Chunks"</span>]:
         <span class="t-builtin">print</span>(f<span class="t-string">"Chunk: {chunk['Text'][:50]}..."</span>)
-        <span class="t-builtin">print</span>(f<span class="t-string">"Embedding dims: {len(chunk['Embeddings'])}"</span>)</code></pre>
+        <span class="t-builtin">print</span>(f<span class="t-string">"Embedding dims: {len(chunk['Embeddings'])}"</span>)
+
+    <span class="t-comment"># Regex-based chunking (split on Markdown headings)</span>
+    regex_result = client.process(<span class="t-string">"ep_default"</span>, {
+        <span class="t-string">"Type"</span>: <span class="t-string">"Text"</span>,
+        <span class="t-string">"Text"</span>: <span class="t-string">"# Intro\nWelcome.\n# Setup\nInstall deps.\n# Usage\nRun it."</span>,
+        <span class="t-string">"ChunkingConfiguration"</span>: {
+            <span class="t-string">"Strategy"</span>: <span class="t-string">"RegexBased"</span>,
+            <span class="t-string">"RegexPattern"</span>: <span class="t-string">"^# "</span>
+        }
+    })
+    <span class="t-builtin">print</span>(f<span class="t-string">"Regex chunks: {len(regex_result['Chunks'])}"</span>)</code></pre>
                         </div>
                     </div>
                     <div class="tab-panel" id="tab-javascript">
@@ -642,6 +666,11 @@ console.log(<span class="t-string">`Embedding dims: ${result.Chunks[0].Embedding
                     <h4>WholeTable</h4>
                     <p>The entire table as a single markdown-formatted chunk.</p>
                     <span class="strategy-types">Tables only</span>
+                </div>
+                <div class="strategy-card">
+                    <h4>RegexBased</h4>
+                    <p>Split at boundaries defined by a user-supplied regular expression. Ideal for Markdown headings, log timestamps, LaTeX sections, or any structured format.</p>
+                    <span class="strategy-types">All types</span>
                 </div>
             </div>
         </div>
