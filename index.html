@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partio - Containerized Chunking &amp; Embeddings Controller</title>
+    <meta name="description" content="Partio is an open-source, containerized chunking and embeddings controller. Simplify document processing and embedding with a RESTful API, multi-language SDKs, and a powerful dashboard.">
+    <meta name="keywords" content="chunking, embeddings, RAG, semantic cells, docker, open source, AI, NLP, vector embeddings, document processing">
+    <meta property="og:title" content="Partio - Containerized Chunking & Embeddings Controller">
+    <meta property="og:description" content="Simplify document processing and embedding with an open-source, containerized solution.">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/x-icon" href="assets/icon.ico">
+    <link rel="icon" type="image/png" href="assets/icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">
+                <img src="assets/logo-light-text.png" alt="Partio" class="logo-dark-mode">
+                <img src="assets/logo-dark-text.png" alt="Partio" class="logo-light-mode">
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="#features">Features</a>
+                <a href="#use-cases">Use Cases</a>
+                <a href="#comparison">Why Partio</a>
+                <a href="#examples">Examples</a>
+                <a href="#getting-started">Get Started</a>
+                <a href="#dashboard">Dashboard</a>
+                <a href="#sdks">SDKs</a>
+                <a href="#api">API</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+                <a href="https://github.com/jchristn/Partio" class="btn btn-primary btn-sm" target="_blank" rel="noopener">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    GitHub
+                </a>
+                <button class="hamburger" id="hamburger" aria-label="Open menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">Open Source &middot; MIT License &middot; v0.1.0</div>
+                <h1 class="hero-title">Chunk. Embed.<br><span class="gradient-text">Ship Faster.</span></h1>
+                <p class="hero-subtitle">Partio is a containerized chunking and embeddings controller that simplifies document processing for RAG pipelines, semantic search, and AI applications. Two Docker containers. One API. Every language.</p>
+                <div class="hero-ctas">
+                    <a href="#getting-started" class="btn btn-primary btn-lg">Get Started</a>
+                    <a href="https://github.com/jchristn/Partio" class="btn btn-outline btn-lg" target="_blank" rel="noopener">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        View on GitHub
+                    </a>
+                    <a href="https://hub.docker.com/u/jchristn77" class="btn btn-ghost btn-lg" target="_blank" rel="noopener">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.186m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.186.186 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.186.186 0 00-.185-.186H5.136a.186.186 0 00-.186.185v1.888c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.687 11.687 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288Z"/></svg>
+                        Docker Hub
+                    </a>
+                </div>
+                <div class="trust-badges">
+                    <span class="badge"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> MIT License</span>
+                    <span class="badge"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg> Docker Ready</span>
+                    <span class="badge"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> C# &middot; Python &middot; JS SDKs</span>
+                    <span class="badge"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg> Multi-Tenant</span>
+                    <span class="badge"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> RESTful API</span>
+                    <span class="badge"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg> React Dashboard</span>
+                </div>
+            </div>
+            <div class="hero-terminal">
+                <div class="terminal">
+                    <div class="terminal-header">
+                        <span class="terminal-dot red"></span>
+                        <span class="terminal-dot yellow"></span>
+                        <span class="terminal-dot green"></span>
+                        <span class="terminal-title">terminal</span>
+                    </div>
+                    <div class="terminal-body">
+<pre><code><span class="t-comment"># Start Partio with Docker Compose</span>
+<span class="t-prompt">$</span> curl -o compose.yaml \
+    https://raw.githubusercontent.com/jchristn/Partio/main/docker/compose.yaml
+<span class="t-prompt">$</span> docker compose up -d
+
+<span class="t-comment"># Chunk and embed a document</span>
+<span class="t-prompt">$</span> curl -X POST http://localhost:8400/v1.0/endpoints/ep_default/process \
+    -H <span class="t-string">"Authorization: Bearer default"</span> \
+    -H <span class="t-string">"Content-Type: application/json"</span> \
+    -d <span class="t-string">'{
+      "Type": "Text",
+      "Text": "Partio makes chunking and embedding easy.",
+      "ChunkingConfiguration": {
+        "Strategy": "FixedTokenCount",
+        "FixedTokenCount": 256
+      }
+    }'</span>
+
+<span class="t-output">{"Text":"Partio makes chunking...","Chunks":[{"Text":"...","Embeddings":[0.012,-0.045,...]}]}</span></code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits" id="benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Partio?</h2>
+                <p>Stop building chunking and embedding infrastructure from scratch. Partio gives you production-ready document processing in minutes.</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                    </div>
+                    <h3>Two Containers, Done</h3>
+                    <p>Pull two Docker images and you have a complete chunking and embedding system. No cluster management, no complex infrastructure. Just <code>docker compose up</code>.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                    </div>
+                    <h3>Semantic Cell Processing</h3>
+                    <p>Process text, code, lists, tables, hyperlinks, images, and more. Partio understands your data structure and chunks it intelligently based on content type.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    </div>
+                    <h3>10 Chunking Strategies</h3>
+                    <p>Fixed token count, sentence-based, paragraph-based, table rows, key-value pairs, and more. Use overlap and sliding windows for context continuity.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3>Multi-Tenant by Design</h3>
+                    <p>Isolate teams, customers, or environments with built-in multi-tenancy. Each tenant gets their own users, credentials, and embedding endpoints.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    </div>
+                    <h3>SDKs for Every Stack</h3>
+                    <p>Native SDKs for C#, Python, and JavaScript. Zero-dependency JS client using native fetch. Full async support across all languages.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3>Bring Your Own Provider</h3>
+                    <p>Works with Ollama, OpenAI, Azure OpenAI, vLLM, LocalAI, or any OpenAI-compatible API. Background health checks ensure endpoint reliability.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Everything You Need</h2>
+                <p>Partio handles the hard parts of document processing so you can focus on building your application.</p>
+            </div>
+            <div class="features-columns">
+                <div class="feature-group">
+                    <h3 class="feature-group-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                        Processing
+                    </h3>
+                    <ul class="feature-list">
+                        <li>8 semantic cell types (Text, Code, List, Table, Hyperlink, Meta, Binary, Image)</li>
+                        <li>10 chunking strategies with configurable overlap</li>
+                        <li>Sliding window overlap for context continuity</li>
+                        <li>Context prefix injection per chunk</li>
+                        <li>Batch processing for high-throughput workloads</li>
+                        <li>L2 normalization for cosine similarity</li>
+                        <li>Deterministic, reproducible chunking output</li>
+                    </ul>
+                </div>
+                <div class="feature-group">
+                    <h3 class="feature-group-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                        Infrastructure
+                    </h3>
+                    <ul class="feature-list">
+                        <li>Docker containers for server and dashboard</li>
+                        <li>Multi-architecture builds (amd64, arm64)</li>
+                        <li>4 database backends (SQLite, PostgreSQL, MySQL, SQL Server)</li>
+                        <li>Zero-config SQLite default for quick start</li>
+                        <li>Stateless server for horizontal scaling</li>
+                        <li>Background health checks with configurable thresholds</li>
+                        <li>Automatic request gating for unhealthy endpoints</li>
+                    </ul>
+                </div>
+                <div class="feature-group">
+                    <h3 class="feature-group-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        Security &amp; Operations
+                    </h3>
+                    <ul class="feature-list">
+                        <li>Multi-tenant isolation at the database level</li>
+                        <li>Three-tier authentication (Admin, Credential, Public)</li>
+                        <li>Scoped bearer tokens per tenant and user</li>
+                        <li>Request history with full audit logging</li>
+                        <li>Upstream embedding call tracking</li>
+                        <li>Configurable retention and automatic cleanup</li>
+                        <li>Postman collection with 50+ pre-built requests</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture -->
+    <section class="architecture" id="architecture">
+        <div class="container">
+            <div class="section-header">
+                <h2>How It Works</h2>
+                <p>Partio sits between your application and your embedding provider, handling chunking, embedding, and management.</p>
+            </div>
+            <div class="arch-diagram">
+                <div class="arch-row">
+                    <div class="arch-node arch-app">
+                        <div class="arch-node-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        </div>
+                        <strong>Your Application</strong>
+                        <span>C# / Python / JS / cURL</span>
+                    </div>
+                </div>
+                <div class="arch-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+                    <span>REST API / SDK</span>
+                </div>
+                <div class="arch-row arch-row-center">
+                    <div class="arch-node arch-server">
+                        <div class="arch-node-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                        </div>
+                        <strong>Partio Server</strong>
+                        <span>:8400 &middot; Chunking &middot; Routing</span>
+                    </div>
+                    <div class="arch-node arch-dashboard">
+                        <div class="arch-node-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                        </div>
+                        <strong>Partio Dashboard</strong>
+                        <span>:8401 &middot; React &middot; Admin UI</span>
+                    </div>
+                </div>
+                <div class="arch-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+                    <span>Embedding Calls</span>
+                </div>
+                <div class="arch-row arch-row-bottom">
+                    <div class="arch-node arch-provider">
+                        <div class="arch-node-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        </div>
+                        <strong>Ollama</strong>
+                        <span>Local / Self-hosted</span>
+                    </div>
+                    <div class="arch-node arch-provider">
+                        <div class="arch-node-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+                        </div>
+                        <strong>OpenAI</strong>
+                        <span>Cloud API</span>
+                    </div>
+                    <div class="arch-node arch-provider">
+                        <div class="arch-node-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                        </div>
+                        <strong>Any Compatible</strong>
+                        <span>vLLM &middot; LocalAI &middot; Azure</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="use-cases" id="use-cases">
+        <div class="container">
+            <div class="section-header">
+                <h2>Built for Your Workflow</h2>
+                <p>Whether you're building RAG pipelines, semantic search, or AI-powered applications, Partio fits right in.</p>
+            </div>
+            <div class="use-cases-grid">
+                <div class="use-case-card" data-audience="ai-engineer">
+                    <div class="use-case-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    </div>
+                    <h3>RAG Pipelines</h3>
+                    <p>Chunk documents into semantically meaningful pieces and generate embeddings in a single API call. Feed directly into your vector store for retrieval-augmented generation.</p>
+                    <span class="use-case-audience">AI Engineers</span>
+                </div>
+                <div class="use-case-card" data-audience="data-scientist">
+                    <div class="use-case-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                    </div>
+                    <h3>Semantic Search</h3>
+                    <p>Generate high-quality embeddings for search indexes. Support multiple chunking strategies to optimize recall and precision for your specific corpus.</p>
+                    <span class="use-case-audience">Data Scientists</span>
+                </div>
+                <div class="use-case-card" data-audience="developer">
+                    <div class="use-case-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    </div>
+                    <h3>Document Processing</h3>
+                    <p>Process tables, code blocks, lists, and mixed-format documents with type-aware chunking. Each content type gets the strategy it deserves.</p>
+                    <span class="use-case-audience">Developers</span>
+                </div>
+                <div class="use-case-card" data-audience="developer">
+                    <div class="use-case-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    </div>
+                    <h3>Knowledge Base Ingestion</h3>
+                    <p>Batch-process your knowledge base through a REST API. Partio handles the chunking and embedding so your ingestion pipeline stays clean and focused.</p>
+                    <span class="use-case-audience">Developers</span>
+                </div>
+                <div class="use-case-card" data-audience="devops">
+                    <div class="use-case-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3>Multi-Tenant SaaS</h3>
+                    <p>Serve multiple customers from a single deployment with isolated tenants, scoped credentials, and per-tenant embedding endpoints. Built-in audit logging included.</p>
+                    <span class="use-case-audience">DevOps</span>
+                </div>
+                <div class="use-case-card" data-audience="data-scientist">
+                    <div class="use-case-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                    </div>
+                    <h3>Model Experimentation</h3>
+                    <p>Switch between embedding providers without changing application code. Compare Ollama, OpenAI, and other providers side by side using the same chunking strategies.</p>
+                    <span class="use-case-audience">Data Scientists</span>
+                </div>
+                <div class="use-case-card" data-audience="ai-engineer">
+                    <div class="use-case-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                    <h3>Table &amp; Structured Data</h3>
+                    <p>Five specialized table chunking strategies: row-based, row with headers, grouped rows, key-value pairs, and whole-table. Perfect for CSV, Excel, and database exports.</p>
+                    <span class="use-case-audience">AI Engineers</span>
+                </div>
+                <div class="use-case-card" data-audience="devops">
+                    <div class="use-case-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    </div>
+                    <h3>Observability &amp; Debugging</h3>
+                    <p>Full request history with upstream embedding call tracking. See exactly what was sent to your provider, what came back, and how long it took.</p>
+                    <span class="use-case-audience">DevOps</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="comparison" id="comparison">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Not Roll Your Own?</h2>
+                <p>You could build chunking and embedding infrastructure yourself. Here's what that looks like compared to Partio.</p>
+            </div>
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Capability</th>
+                            <th>DIY Approach</th>
+                            <th class="highlight">Partio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Setup time</td>
+                            <td>Days to weeks</td>
+                            <td class="highlight">Minutes</td>
+                        </tr>
+                        <tr>
+                            <td>Chunking strategies</td>
+                            <td>Build each one yourself</td>
+                            <td class="highlight">10 strategies, configurable</td>
+                        </tr>
+                        <tr>
+                            <td>Embedding providers</td>
+                            <td>Hard-coded per provider</td>
+                            <td class="highlight">Ollama + OpenAI-compatible, swap freely</td>
+                        </tr>
+                        <tr>
+                            <td>Multi-tenancy</td>
+                            <td>Custom auth &amp; isolation</td>
+                            <td class="highlight">Built-in tenant isolation</td>
+                        </tr>
+                        <tr>
+                            <td>Health monitoring</td>
+                            <td>Build from scratch</td>
+                            <td class="highlight">Automatic background checks</td>
+                        </tr>
+                        <tr>
+                            <td>Request auditing</td>
+                            <td>Custom logging</td>
+                            <td class="highlight">Full audit trail with upstream tracking</td>
+                        </tr>
+                        <tr>
+                            <td>Admin dashboard</td>
+                            <td>Build or skip</td>
+                            <td class="highlight">React dashboard included</td>
+                        </tr>
+                        <tr>
+                            <td>SDKs</td>
+                            <td>Write your own clients</td>
+                            <td class="highlight">C#, Python, JS ready to go</td>
+                        </tr>
+                        <tr>
+                            <td>Database support</td>
+                            <td>Pick one, build schema</td>
+                            <td class="highlight">SQLite, PostgreSQL, MySQL, SQL Server</td>
+                        </tr>
+                        <tr>
+                            <td>Deployment</td>
+                            <td>Custom Docker/CI</td>
+                            <td class="highlight">docker compose up</td>
+                        </tr>
+                        <tr>
+                            <td>Maintenance</td>
+                            <td>You own it forever</td>
+                            <td class="highlight">Community-maintained, MIT licensed</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Code Examples -->
+    <section class="examples" id="examples">
+        <div class="container">
+            <div class="section-header">
+                <h2>Simple by Design</h2>
+                <p>Chunk and embed documents in just a few lines of code, in any language.</p>
+            </div>
+            <div class="tabs">
+                <div class="tab-bar">
+                    <button class="tab-btn active" data-tab="curl">cURL</button>
+                    <button class="tab-btn" data-tab="python">Python</button>
+                    <button class="tab-btn" data-tab="javascript">JavaScript</button>
+                    <button class="tab-btn" data-tab="csharp">C#</button>
+                </div>
+                <div class="tab-panels">
+                    <div class="tab-panel active" id="tab-curl">
+                        <div class="code-block">
+                            <button class="copy-btn" aria-label="Copy code">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                <span>Copy</span>
+                            </button>
+<pre><code><span class="t-comment"># Process a text document</span>
+curl -X POST http://localhost:8400/v1.0/endpoints/ep_default/process \
+  -H <span class="t-string">"Authorization: Bearer default"</span> \
+  -H <span class="t-string">"Content-Type: application/json"</span> \
+  -d <span class="t-string">'{
+    "Type": "Text",
+    "Text": "Retrieval-augmented generation (RAG) improves LLM responses by grounding them in external knowledge. Documents are chunked, embedded, and stored in a vector database for efficient retrieval at query time.",
+    "ChunkingConfiguration": {
+      "Strategy": "SentenceBased"
+    }
+  }'</span>
+
+<span class="t-comment"># Batch process multiple documents</span>
+curl -X POST http://localhost:8400/v1.0/endpoints/ep_default/process/batch \
+  -H <span class="t-string">"Authorization: Bearer default"</span> \
+  -H <span class="t-string">"Content-Type: application/json"</span> \
+  -d <span class="t-string">'[
+    { "Type": "Text", "Text": "First document content..." },
+    { "Type": "Code", "Text": "def hello(): return \"world\"" },
+    { "Type": "Table", "Text": "Name,Age\nAlice,30\nBob,25" }
+  ]'</span></code></pre>
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="tab-python">
+                        <div class="code-block">
+                            <button class="copy-btn" aria-label="Copy code">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                <span>Copy</span>
+                            </button>
+<pre><code><span class="t-keyword">from</span> partio_sdk <span class="t-keyword">import</span> PartioClient
+
+<span class="t-comment"># Connect to Partio</span>
+<span class="t-keyword">with</span> PartioClient(<span class="t-string">"http://localhost:8400"</span>, <span class="t-string">"partioadmin"</span>) <span class="t-keyword">as</span> client:
+
+    <span class="t-comment"># Check server health</span>
+    health = client.health()
+    <span class="t-builtin">print</span>(f<span class="t-string">"Server: {health['Status']} v{health['Version']}"</span>)
+
+    <span class="t-comment"># Process a text document with sentence-based chunking</span>
+    result = client.process(<span class="t-string">"ep_default"</span>, {
+        <span class="t-string">"Type"</span>: <span class="t-string">"Text"</span>,
+        <span class="t-string">"Text"</span>: <span class="t-string">"RAG improves LLM responses by grounding them in external knowledge. Documents are chunked and embedded for retrieval."</span>,
+        <span class="t-string">"ChunkingConfiguration"</span>: {
+            <span class="t-string">"Strategy"</span>: <span class="t-string">"SentenceBased"</span>
+        }
+    })
+
+    <span class="t-comment"># Access chunks and embeddings</span>
+    <span class="t-keyword">for</span> chunk <span class="t-keyword">in</span> result[<span class="t-string">"Chunks"</span>]:
+        <span class="t-builtin">print</span>(f<span class="t-string">"Chunk: {chunk['Text'][:50]}..."</span>)
+        <span class="t-builtin">print</span>(f<span class="t-string">"Embedding dims: {len(chunk['Embeddings'])}"</span>)</code></pre>
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="tab-javascript">
+                        <div class="code-block">
+                            <button class="copy-btn" aria-label="Copy code">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                <span>Copy</span>
+                            </button>
+<pre><code><span class="t-keyword">import</span> { PartioClient } <span class="t-keyword">from</span> <span class="t-string">'./partio-sdk.js'</span>;
+
+<span class="t-comment">// Connect to Partio (zero dependencies, native fetch)</span>
+<span class="t-keyword">const</span> client = <span class="t-keyword">new</span> PartioClient(<span class="t-string">'http://localhost:8400'</span>, <span class="t-string">'partioadmin'</span>);
+
+<span class="t-comment">// Process a text document</span>
+<span class="t-keyword">const</span> result = <span class="t-keyword">await</span> client.process(<span class="t-string">'ep_default'</span>, {
+  Type: <span class="t-string">'Text'</span>,
+  Text: <span class="t-string">'RAG improves LLM responses by grounding them in external knowledge.'</span>,
+  ChunkingConfiguration: {
+    Strategy: <span class="t-string">'FixedTokenCount'</span>,
+    FixedTokenCount: <span class="t-number">256</span>,
+    OverlapCount: <span class="t-number">32</span>
+  }
+});
+
+<span class="t-comment">// Process a table with specialized chunking</span>
+<span class="t-keyword">const</span> tableResult = <span class="t-keyword">await</span> client.process(<span class="t-string">'ep_default'</span>, {
+  Type: <span class="t-string">'Table'</span>,
+  Text: <span class="t-string">'Name,Role,Team\nAlice,Engineer,Platform\nBob,Designer,Product'</span>,
+  ChunkingConfiguration: { Strategy: <span class="t-string">'RowWithHeaders'</span> }
+});
+
+console.log(<span class="t-string">`Chunks: ${result.Chunks.length}`</span>);
+console.log(<span class="t-string">`Embedding dims: ${result.Chunks[0].Embeddings.length}`</span>);</code></pre>
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="tab-csharp">
+                        <div class="code-block">
+                            <button class="copy-btn" aria-label="Copy code">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                <span>Copy</span>
+                            </button>
+<pre><code><span class="t-keyword">using</span> Partio.Sdk;
+<span class="t-keyword">using</span> Partio.Sdk.Models;
+
+<span class="t-comment">// Connect to Partio</span>
+<span class="t-keyword">using var</span> client = <span class="t-keyword">new</span> PartioClient(<span class="t-string">"http://localhost:8400"</span>, <span class="t-string">"partioadmin"</span>);
+
+<span class="t-comment">// Process a text document</span>
+<span class="t-keyword">var</span> response = <span class="t-keyword">await</span> client.ProcessAsync(<span class="t-string">"ep_default"</span>, <span class="t-keyword">new</span> SemanticCellRequest
+{
+    Type = <span class="t-string">"Text"</span>,
+    Text = <span class="t-string">"RAG improves LLM responses by grounding them in external knowledge."</span>,
+    ChunkingConfiguration = <span class="t-keyword">new</span> ChunkingConfiguration
+    {
+        Strategy = <span class="t-string">"SentenceBased"</span>
+    }
+});
+
+<span class="t-comment">// Access chunks and embeddings</span>
+<span class="t-keyword">foreach</span> (<span class="t-keyword">var</span> chunk <span class="t-keyword">in</span> response.Chunks)
+{
+    Console.WriteLine($<span class="t-string">"Chunk: {chunk.Text[..50]}..."</span>);
+    Console.WriteLine($<span class="t-string">"Embedding dims: {chunk.Embeddings.Count}"</span>);
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chunking Strategies -->
+    <section class="strategies" id="strategies">
+        <div class="container">
+            <div class="section-header">
+                <h2>Chunking Strategies</h2>
+                <p>Choose the right chunking strategy for your content type. Mix and match across different document sections.</p>
+            </div>
+            <div class="strategies-grid">
+                <div class="strategy-card">
+                    <h4>FixedTokenCount</h4>
+                    <p>Split into chunks of N tokens using cl100k_base encoding. Supports configurable overlap.</p>
+                    <span class="strategy-types">All types</span>
+                </div>
+                <div class="strategy-card">
+                    <h4>SentenceBased</h4>
+                    <p>Split at sentence boundaries for natural, readable chunks that preserve meaning.</p>
+                    <span class="strategy-types">All types</span>
+                </div>
+                <div class="strategy-card">
+                    <h4>ParagraphBased</h4>
+                    <p>Split at paragraph boundaries to keep related content together in each chunk.</p>
+                    <span class="strategy-types">All types</span>
+                </div>
+                <div class="strategy-card">
+                    <h4>WholeList</h4>
+                    <p>Treat the entire list as a single chunk, preserving the complete list context.</p>
+                    <span class="strategy-types">Lists only</span>
+                </div>
+                <div class="strategy-card">
+                    <h4>ListEntry</h4>
+                    <p>Each list item becomes its own chunk, ideal for FAQ-style or itemized content.</p>
+                    <span class="strategy-types">Lists only</span>
+                </div>
+                <div class="strategy-card">
+                    <h4>Row</h4>
+                    <p>Each table row as a space-separated chunk without headers.</p>
+                    <span class="strategy-types">Tables only</span>
+                </div>
+                <div class="strategy-card">
+                    <h4>RowWithHeaders</h4>
+                    <p>Each row as a markdown table with column headers repeated, providing context per chunk.</p>
+                    <span class="strategy-types">Tables only</span>
+                </div>
+                <div class="strategy-card">
+                    <h4>RowGroupWithHeaders</h4>
+                    <p>Groups of N rows with headers. Balance between context and chunk size.</p>
+                    <span class="strategy-types">Tables only</span>
+                </div>
+                <div class="strategy-card">
+                    <h4>KeyValuePairs</h4>
+                    <p>Rows formatted as "key: value" pairs, natural for structured data extraction.</p>
+                    <span class="strategy-types">Tables only</span>
+                </div>
+                <div class="strategy-card">
+                    <h4>WholeTable</h4>
+                    <p>The entire table as a single markdown-formatted chunk.</p>
+                    <span class="strategy-types">Tables only</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Getting Started -->
+    <section class="getting-started" id="getting-started">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get Started in Minutes</h2>
+                <p>Choose your preferred deployment method. Partio runs anywhere Docker runs.</p>
+            </div>
+            <div class="start-tabs">
+                <div class="tab-bar">
+                    <button class="tab-btn active" data-tab="docker-compose">Docker Compose</button>
+                    <button class="tab-btn" data-tab="docker-run">Docker Run</button>
+                    <button class="tab-btn" data-tab="from-source">From Source</button>
+                </div>
+                <div class="tab-panels">
+                    <div class="tab-panel active" id="tab-docker-compose">
+                        <div class="start-steps">
+                            <div class="start-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>Download the Compose file</h4>
+                                    <div class="code-block">
+                                        <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+<pre><code>curl -o compose.yaml \
+  https://raw.githubusercontent.com/jchristn/Partio/main/docker/compose.yaml
+curl -o partio.json \
+  https://raw.githubusercontent.com/jchristn/Partio/main/docker/partio.json</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="start-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Start the services</h4>
+                                    <div class="code-block">
+                                        <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+<pre><code>docker compose up -d</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="start-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Verify it's running</h4>
+                                    <div class="code-block">
+                                        <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+<pre><code><span class="t-comment"># Server health check</span>
+curl http://localhost:8400/
+<span class="t-output">{"Status":"Healthy","Version":"0.1.0"}</span>
+
+<span class="t-comment"># Open the dashboard</span>
+open http://localhost:8401</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="start-info">
+                            <strong>Default ports:</strong> Server on <code>:8400</code>, Dashboard on <code>:8401</code><br>
+                            <strong>Default admin key:</strong> <code>partioadmin</code><br>
+                            <strong>Default credential:</strong> <code>Bearer default</code><br>
+                            <strong>Default database:</strong> SQLite (zero configuration)
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="tab-docker-run">
+                        <div class="start-steps">
+                            <div class="start-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>Run the Partio server</h4>
+                                    <div class="code-block">
+                                        <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+<pre><code>docker run -d \
+  --name partio-server \
+  -p 8400:8400 \
+  -v ./data:/app/data \
+  -v ./logs:/app/logs \
+  jchristn77/partio-server:latest</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="start-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Run the dashboard</h4>
+                                    <div class="code-block">
+                                        <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+<pre><code>docker run -d \
+  --name partio-dashboard \
+  -p 8401:8401 \
+  jchristn77/partio-dashboard:latest</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="start-info">
+                            <strong>Images:</strong> <a href="https://hub.docker.com/r/jchristn77/partio-server" target="_blank" rel="noopener">jchristn77/partio-server</a> &middot; <a href="https://hub.docker.com/r/jchristn77/partio-dashboard" target="_blank" rel="noopener">jchristn77/partio-dashboard</a><br>
+                            <strong>Architectures:</strong> linux/amd64, linux/arm64
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="tab-from-source">
+                        <div class="start-steps">
+                            <div class="start-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>Clone the repository</h4>
+                                    <div class="code-block">
+                                        <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+<pre><code>git clone https://github.com/jchristn/Partio.git
+cd Partio</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="start-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Build and run the server</h4>
+                                    <div class="code-block">
+                                        <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+<pre><code><span class="t-comment"># Requires .NET 10.0 SDK</span>
+cd src/Partio.Server
+dotnet build
+dotnet run</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="start-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Build and run the dashboard</h4>
+                                    <div class="code-block">
+                                        <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+<pre><code><span class="t-comment"># Requires Node.js 18+</span>
+cd dashboard
+npm install
+npm run dev</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="start-info">
+                            <strong>Prerequisites:</strong> .NET 10.0 SDK, Node.js 18+<br>
+                            <strong>Repository:</strong> <a href="https://github.com/jchristn/Partio" target="_blank" rel="noopener">github.com/jchristn/Partio</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard -->
+    <section class="dashboard-section" id="dashboard">
+        <div class="container">
+            <div class="section-header">
+                <h2>Manage Everything from the Dashboard</h2>
+                <p>A full-featured React admin dashboard for managing tenants, users, credentials, endpoints, and processing &mdash; all from your browser.</p>
+            </div>
+            <div class="dashboard-features">
+                <div class="dashboard-feature-grid">
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <h4>Tenant Management</h4>
+                        <p>Create and manage tenants with labels, tags, and isolated resources. Full CRUD with pagination and filtering.</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </div>
+                        <h4>User &amp; Credential Admin</h4>
+                        <p>Manage users per tenant with role-based access. Generate and revoke bearer token credentials with one click.</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        </div>
+                        <h4>Endpoint Configuration</h4>
+                        <p>Configure Ollama and OpenAI-compatible endpoints. Set health check intervals, thresholds, and monitor endpoint status in real time.</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                        </div>
+                        <h4>Live Processing Tool</h4>
+                        <p>Test chunking and embedding directly in the browser. Select strategies, configure parameters, and inspect results with a built-in JSON viewer.</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                        </div>
+                        <h4>Request History</h4>
+                        <p>Browse all API requests with full audit details. Inspect request/response bodies and track upstream embedding calls for debugging.</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <h4>Health Monitoring</h4>
+                        <p>Visual health status for all embedding endpoints. Automatic background checks with configurable thresholds for healthy/unhealthy state transitions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SDKs -->
+    <section class="sdks" id="sdks">
+        <div class="container">
+            <div class="section-header">
+                <h2>SDKs for Every Language</h2>
+                <p>Native clients with full API coverage. 30+ methods per SDK, consistent interfaces, and idiomatic patterns for each language.</p>
+            </div>
+            <div class="sdk-grid">
+                <div class="sdk-card">
+                    <div class="sdk-header">
+                        <div class="sdk-icon">C#</div>
+                        <div class="sdk-meta">
+                            <h4>Partio.Sdk</h4>
+                            <span>.NET 8.0 / 10.0</span>
+                        </div>
+                    </div>
+                    <ul class="sdk-features">
+                        <li>Full async/await with Task-based API</li>
+                        <li>IDisposable pattern for clean resource management</li>
+                        <li>Nullable reference types enabled</li>
+                        <li>XML documentation for IntelliSense</li>
+                    </ul>
+                    <div class="code-block code-block-sm">
+<pre><code><span class="t-keyword">using var</span> client = <span class="t-keyword">new</span> PartioClient(endpoint, key);
+<span class="t-keyword">var</span> result = <span class="t-keyword">await</span> client.ProcessAsync(epId, request);</code></pre>
+                    </div>
+                    <a href="https://github.com/jchristn/Partio/tree/main/sdk/csharp" class="btn btn-outline btn-sm" target="_blank" rel="noopener">View SDK</a>
+                </div>
+                <div class="sdk-card">
+                    <div class="sdk-header">
+                        <div class="sdk-icon">Py</div>
+                        <div class="sdk-meta">
+                            <h4>partio_sdk</h4>
+                            <span>Python 3.7+</span>
+                        </div>
+                    </div>
+                    <ul class="sdk-features">
+                        <li>Context manager support (<code>with</code> statement)</li>
+                        <li>Session-based HTTP with persistent headers</li>
+                        <li>Single dependency: <code>requests>=2.28.0</code></li>
+                        <li>Custom PartioError exception class</li>
+                    </ul>
+                    <div class="code-block code-block-sm">
+<pre><code><span class="t-keyword">with</span> PartioClient(endpoint, key) <span class="t-keyword">as</span> client:
+    result = client.process(ep_id, request)</code></pre>
+                    </div>
+                    <a href="https://github.com/jchristn/Partio/tree/main/sdk/python" class="btn btn-outline btn-sm" target="_blank" rel="noopener">View SDK</a>
+                </div>
+                <div class="sdk-card">
+                    <div class="sdk-header">
+                        <div class="sdk-icon">JS</div>
+                        <div class="sdk-meta">
+                            <h4>partio-sdk</h4>
+                            <span>Node.js 18+ / ES6</span>
+                        </div>
+                    </div>
+                    <ul class="sdk-features">
+                        <li>Zero external dependencies (native fetch)</li>
+                        <li>ES module with full async/await</li>
+                        <li>Works in Node.js and modern browsers</li>
+                        <li>Custom PartioError class</li>
+                    </ul>
+                    <div class="code-block code-block-sm">
+<pre><code><span class="t-keyword">const</span> client = <span class="t-keyword">new</span> PartioClient(endpoint, key);
+<span class="t-keyword">const</span> result = <span class="t-keyword">await</span> client.process(epId, request);</code></pre>
+                    </div>
+                    <a href="https://github.com/jchristn/Partio/tree/main/sdk/js" class="btn btn-outline btn-sm" target="_blank" rel="noopener">View SDK</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Reference -->
+    <section class="api-section" id="api">
+        <div class="container">
+            <div class="section-header">
+                <h2>RESTful API</h2>
+                <p>A clean, consistent API with full CRUD operations, pagination, and comprehensive error handling.</p>
+            </div>
+            <div class="api-groups">
+                <div class="api-group">
+                    <h4 class="api-group-title">Health &amp; Identity</h4>
+                    <div class="api-endpoints">
+                        <div class="api-endpoint">
+                            <span class="api-method get">GET</span>
+                            <code>/</code>
+                            <span class="api-desc">Health check</span>
+                        </div>
+                        <div class="api-endpoint">
+                            <span class="api-method get">GET</span>
+                            <code>/v1.0/health</code>
+                            <span class="api-desc">Health with version</span>
+                        </div>
+                        <div class="api-endpoint">
+                            <span class="api-method get">GET</span>
+                            <code>/v1.0/whoami</code>
+                            <span class="api-desc">Current user identity</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="api-group">
+                    <h4 class="api-group-title">Processing</h4>
+                    <div class="api-endpoints">
+                        <div class="api-endpoint">
+                            <span class="api-method post">POST</span>
+                            <code>/v1.0/endpoints/{id}/process</code>
+                            <span class="api-desc">Chunk &amp; embed a single document</span>
+                        </div>
+                        <div class="api-endpoint">
+                            <span class="api-method post">POST</span>
+                            <code>/v1.0/endpoints/{id}/process/batch</code>
+                            <span class="api-desc">Batch process multiple documents</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="api-group">
+                    <h4 class="api-group-title">Administration</h4>
+                    <div class="api-endpoints">
+                        <div class="api-endpoint">
+                            <span class="api-method put">PUT</span>
+                            <code>/v1.0/tenants</code>
+                            <span class="api-desc">Create tenant</span>
+                        </div>
+                        <div class="api-endpoint">
+                            <span class="api-method put">PUT</span>
+                            <code>/v1.0/users</code>
+                            <span class="api-desc">Create user</span>
+                        </div>
+                        <div class="api-endpoint">
+                            <span class="api-method put">PUT</span>
+                            <code>/v1.0/credentials</code>
+                            <span class="api-desc">Create credential</span>
+                        </div>
+                        <div class="api-endpoint">
+                            <span class="api-method put">PUT</span>
+                            <code>/v1.0/endpoints</code>
+                            <span class="api-desc">Create embedding endpoint</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="api-group">
+                    <h4 class="api-group-title">Endpoint Health</h4>
+                    <div class="api-endpoints">
+                        <div class="api-endpoint">
+                            <span class="api-method get">GET</span>
+                            <code>/v1.0/endpoints/{id}/health</code>
+                            <span class="api-desc">Single endpoint health</span>
+                        </div>
+                        <div class="api-endpoint">
+                            <span class="api-method get">GET</span>
+                            <code>/v1.0/endpoints/health</code>
+                            <span class="api-desc">All endpoints health</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="api-cta">
+                <p>Full API reference with request/response examples, authentication details, and error codes.</p>
+                <a href="https://github.com/jchristn/Partio/blob/main/REST_API.md" class="btn btn-primary" target="_blank" rel="noopener">View Full API Docs</a>
+                <a href="https://github.com/jchristn/Partio/blob/main/Partio.postman_collection.json" class="btn btn-outline" target="_blank" rel="noopener">Download Postman Collection</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Database Support -->
+    <section class="databases" id="databases">
+        <div class="container">
+            <div class="section-header">
+                <h2>Your Database, Your Choice</h2>
+                <p>Partio supports four database backends. Start with SQLite for zero-config development, scale to PostgreSQL or SQL Server for production.</p>
+            </div>
+            <div class="db-grid">
+                <div class="db-card">
+                    <h4>SQLite</h4>
+                    <p>Zero configuration, file-based. Perfect for development, testing, and single-node deployments.</p>
+                    <span class="db-badge default">Default</span>
+                </div>
+                <div class="db-card">
+                    <h4>PostgreSQL</h4>
+                    <p>Production-grade relational database. Ideal for high-throughput multi-tenant deployments.</p>
+                </div>
+                <div class="db-card">
+                    <h4>MySQL</h4>
+                    <p>Widely deployed and well-supported. Great when you're already running MySQL infrastructure.</p>
+                </div>
+                <div class="db-card">
+                    <h4>SQL Server</h4>
+                    <p>Enterprise-ready with full feature parity. Fits naturally into Microsoft-centric environments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Simplify Your Embedding Pipeline?</h2>
+                <p>Partio is free, open source, and MIT licensed. Get started in minutes with Docker or build from source.</p>
+                <div class="cta-buttons">
+                    <a href="https://github.com/jchristn/Partio" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        Star on GitHub
+                    </a>
+                    <a href="https://hub.docker.com/u/jchristn77" class="btn btn-outline btn-lg" target="_blank" rel="noopener">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.186m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.186.186 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.186.186 0 00-.185-.186H5.136a.186.186 0 00-.186.185v1.888c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.687 11.687 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288Z"/></svg>
+                        Pull from Docker Hub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="assets/logo-light-text.png" alt="Partio" class="footer-logo logo-dark-mode">
+                    <img src="assets/logo-dark-text.png" alt="Partio" class="footer-logo logo-light-mode">
+                    <p>Containerized chunking and embeddings controller for AI applications.</p>
+                    <span class="footer-license">Released under the <a href="https://github.com/jchristn/Partio/blob/main/LICENSE.md" target="_blank" rel="noopener">MIT License</a></span>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://github.com/jchristn/Partio" target="_blank" rel="noopener">GitHub Repository</a></li>
+                        <li><a href="https://github.com/jchristn/Partio/blob/main/README.md" target="_blank" rel="noopener">Documentation</a></li>
+                        <li><a href="https://github.com/jchristn/Partio/blob/main/REST_API.md" target="_blank" rel="noopener">API Reference</a></li>
+                        <li><a href="https://github.com/jchristn/Partio/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Changelog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Docker</h4>
+                    <ul>
+                        <li><a href="https://hub.docker.com/r/jchristn77/partio-server" target="_blank" rel="noopener">partio-server</a></li>
+                        <li><a href="https://hub.docker.com/r/jchristn77/partio-dashboard" target="_blank" rel="noopener">partio-dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-group">
+                    <h4>SDKs</h4>
+                    <ul>
+                        <li><a href="https://github.com/jchristn/Partio/tree/main/sdk/csharp" target="_blank" rel="noopener">C# SDK</a></li>
+                        <li><a href="https://github.com/jchristn/Partio/tree/main/sdk/python" target="_blank" rel="noopener">Python SDK</a></li>
+                        <li><a href="https://github.com/jchristn/Partio/tree/main/sdk/js" target="_blank" rel="noopener">JavaScript SDK</a></li>
+                        <li><a href="https://github.com/jchristn/Partio/blob/main/Partio.postman_collection.json" target="_blank" rel="noopener">Postman Collection</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="https://github.com/jchristn/Partio/issues" target="_blank" rel="noopener">Report an Issue</a></li>
+                        <li><a href="https://github.com/jchristn/Partio/pulls" target="_blank" rel="noopener">Contribute</a></li>
+                        <li><a href="https://github.com/jchristn/Partio/blob/main/LICENSE.md" target="_blank" rel="noopener">MIT License</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Joel Christner. Partio is open source software under the MIT License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

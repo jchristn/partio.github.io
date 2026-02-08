@@ -1,3 +1,3 @@
-# Partio.ai Website on Github
+# Partio Website
 
-Nothing to see here.
+Marketing website for the [Partio](https://github.com/jchristn/Partio) open source project. Hosted on GitHub Pages.
