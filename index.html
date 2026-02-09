@@ -978,18 +978,24 @@ npm run dev</code></pre>
                     <h4 class="api-group-title">Health &amp; Identity</h4>
                     <div class="api-endpoints">
                         <div class="api-endpoint">
-                            <span class="api-method get">GET</span>
-                            <code>/</code>
+                            <div class="api-endpoint-route">
+                                <span class="api-method get">GET</span>
+                                <code>/</code>
+                            </div>
                             <span class="api-desc">Health check</span>
                         </div>
                         <div class="api-endpoint">
-                            <span class="api-method get">GET</span>
-                            <code>/v1.0/health</code>
+                            <div class="api-endpoint-route">
+                                <span class="api-method get">GET</span>
+                                <code>/v1.0/health</code>
+                            </div>
                             <span class="api-desc">Health with version</span>
                         </div>
                         <div class="api-endpoint">
-                            <span class="api-method get">GET</span>
-                            <code>/v1.0/whoami</code>
+                            <div class="api-endpoint-route">
+                                <span class="api-method get">GET</span>
+                                <code>/v1.0/whoami</code>
+                            </div>
                             <span class="api-desc">Current user identity</span>
                         </div>
                     </div>
@@ -998,13 +1004,17 @@ npm run dev</code></pre>
                     <h4 class="api-group-title">Processing</h4>
                     <div class="api-endpoints">
                         <div class="api-endpoint">
-                            <span class="api-method post">POST</span>
-                            <code>/v1.0/endpoints/{id}/process</code>
+                            <div class="api-endpoint-route">
+                                <span class="api-method post">POST</span>
+                                <code>/v1.0/endpoints/{id}/process</code>
+                            </div>
                             <span class="api-desc">Chunk &amp; embed a single document</span>
                         </div>
                         <div class="api-endpoint">
-                            <span class="api-method post">POST</span>
-                            <code>/v1.0/endpoints/{id}/process/batch</code>
+                            <div class="api-endpoint-route">
+                                <span class="api-method post">POST</span>
+                                <code>/v1.0/endpoints/{id}/process/batch</code>
+                            </div>
                             <span class="api-desc">Batch process multiple documents</span>
                         </div>
                     </div>
@@ -1013,23 +1023,31 @@ npm run dev</code></pre>
                     <h4 class="api-group-title">Administration</h4>
                     <div class="api-endpoints">
                         <div class="api-endpoint">
-                            <span class="api-method put">PUT</span>
-                            <code>/v1.0/tenants</code>
+                            <div class="api-endpoint-route">
+                                <span class="api-method put">PUT</span>
+                                <code>/v1.0/tenants</code>
+                            </div>
                             <span class="api-desc">Create tenant</span>
                         </div>
                         <div class="api-endpoint">
-                            <span class="api-method put">PUT</span>
-                            <code>/v1.0/users</code>
+                            <div class="api-endpoint-route">
+                                <span class="api-method put">PUT</span>
+                                <code>/v1.0/users</code>
+                            </div>
                             <span class="api-desc">Create user</span>
                         </div>
                         <div class="api-endpoint">
-                            <span class="api-method put">PUT</span>
-                            <code>/v1.0/credentials</code>
+                            <div class="api-endpoint-route">
+                                <span class="api-method put">PUT</span>
+                                <code>/v1.0/credentials</code>
+                            </div>
                             <span class="api-desc">Create credential</span>
                         </div>
                         <div class="api-endpoint">
-                            <span class="api-method put">PUT</span>
-                            <code>/v1.0/endpoints</code>
+                            <div class="api-endpoint-route">
+                                <span class="api-method put">PUT</span>
+                                <code>/v1.0/endpoints</code>
+                            </div>
                             <span class="api-desc">Create embedding endpoint</span>
                         </div>
                     </div>
@@ -1038,13 +1056,17 @@ npm run dev</code></pre>
                     <h4 class="api-group-title">Endpoint Health</h4>
                     <div class="api-endpoints">
                         <div class="api-endpoint">
-                            <span class="api-method get">GET</span>
-                            <code>/v1.0/endpoints/{id}/health</code>
+                            <div class="api-endpoint-route">
+                                <span class="api-method get">GET</span>
+                                <code>/v1.0/endpoints/{id}/health</code>
+                            </div>
                             <span class="api-desc">Single endpoint health</span>
                         </div>
                         <div class="api-endpoint">
-                            <span class="api-method get">GET</span>
-                            <code>/v1.0/endpoints/health</code>
+                            <div class="api-endpoint-route">
+                                <span class="api-method get">GET</span>
+                                <code>/v1.0/endpoints/health</code>
+                            </div>
                             <span class="api-desc">All endpoints health</span>
                         </div>
                     </div>
@@ -1052,8 +1074,8 @@ npm run dev</code></pre>
             </div>
             <div class="api-cta">
                 <p>Full API reference with request/response examples, authentication details, and error codes.</p>
-                <a href="https://github.com/jchristn/Partio/blob/main/REST_API.md" class="btn btn-primary" target="_blank" rel="noopener">View Full API Docs</a>
-                <a href="https://github.com/jchristn/Partio/blob/main/Partio.postman_collection.json" class="btn btn-outline" target="_blank" rel="noopener">Download Postman Collection</a>
+                <a href="https://github.com/jchristn/Partio/blob/main/REST_API.md" class="btn btn-primary" target="_blank" rel="noopener">API Docs</a>
+                <a href="https://github.com/jchristn/Partio/blob/main/Partio.postman_collection.json" class="btn btn-outline" target="_blank" rel="noopener">Postman</a>
             </div>
         </div>
     </section>

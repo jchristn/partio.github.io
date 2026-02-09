@@ -1068,7 +1068,7 @@ img {
 }
 .api-groups {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
     margin-bottom: 40px;
 }
@@ -1089,20 +1089,28 @@ img {
 .api-endpoints {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
 .api-endpoint {
     display: flex;
-    align-items: center;
-    gap: 10px;
+    flex-direction: column;
+    gap: 4px;
     font-size: 0.85rem;
+}
+.api-endpoint-route {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 .api-method {
     flex-shrink: 0;
+    display: inline-block;
+    width: 52px;
+    text-align: center;
     font-family: var(--font-mono);
     font-size: 0.7rem;
     font-weight: 700;
-    padding: 3px 8px;
+    padding: 3px 0;
     border-radius: 4px;
     text-transform: uppercase;
     letter-spacing: 0.03em;
@@ -1113,11 +1121,11 @@ img {
 .api-method.delete { background: rgba(239, 68, 68, 0.12); color: var(--method-delete); }
 .api-endpoint code {
     font-size: 0.8rem;
-    flex-shrink: 0;
 }
 .api-desc {
     color: var(--text-tertiary);
-    font-size: 0.8rem;
+    font-size: 0.78rem;
+    padding-left: 60px;
 }
 .api-cta {
     text-align: center;
@@ -1132,6 +1140,7 @@ img {
 }
 .api-cta .btn {
     margin: 0 6px;
+    padding-inline: 2.5em;
 }
 
 /* ============================================================
