@@ -121,8 +121,8 @@
                     <div class="benefit-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
                     </div>
-                    <h3>Two Containers, Done</h3>
-                    <p>Pull two Docker images and you have a complete chunking and embedding system. No cluster management, no complex infrastructure. Just <code>docker compose up</code>.</p>
+                    <h3>Three Containers, Done</h3>
+                    <p>Just <code>docker compose up</code> and pull your models. No cluster management, no complex infrastructure.</p>
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">
@@ -717,6 +717,20 @@ curl -o partio.json \
                             </div>
                             <div class="start-step">
                                 <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Pull an embedding model</h4>
+                                    <div class="code-block">
+                                        <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+<pre><code><span class="t-comment"># Bash / macOS / Linux</span>
+curl http://localhost:11434/api/pull -d '{"name": "all-minilm"}'
+
+<span class="t-comment"># Windows Terminal (cmd)</span>
+curl http://localhost:11434/api/pull -d "{\"name\": \"all-minilm\"}"</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="start-step">
+                                <div class="step-number">4</div>
                                 <div class="step-content">
                                     <h4>Verify it's running</h4>
                                     <div class="code-block">
