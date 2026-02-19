@@ -989,8 +989,10 @@ img {
 }
 .sdk-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: 1fr;
     gap: 24px;
+    max-width: 800px;
+    margin: 0 auto;
 }
 .sdk-card {
     background: var(--bg-card);

@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partio - Containerized Chunking &amp; Embeddings Controller</title>
-    <meta name="description" content="Partio is an open-source, containerized chunking and embeddings controller. Simplify document processing and embedding with a RESTful API, multi-language SDKs, and a powerful dashboard.">
+    <title>Partio - Containerized Summarization, Chunking &amp; Embeddings Controller</title>
+    <meta name="description" content="Partio is an open-source, containerized summarization, chunking, and embeddings controller. Simplify document processing and embedding with a RESTful API, multi-language SDKs, and a powerful dashboard.">
     <meta name="keywords" content="chunking, embeddings, RAG, semantic cells, docker, open source, AI, NLP, vector embeddings, document processing">
-    <meta property="og:title" content="Partio - Containerized Chunking & Embeddings Controller">
-    <meta property="og:description" content="Simplify document processing and embedding with an open-source, containerized solution.">
+    <meta property="og:title" content="Partio - Containerized Summarization, Chunking & Embeddings Controller">
+    <meta property="og:description" content="Simplify document processing, summarization, and embedding with an open-source, containerized solution.">
     <meta property="og:type" content="website">
     <link rel="icon" type="image/x-icon" href="assets/icon.ico">
     <link rel="icon" type="image/png" href="assets/icon.png">
@@ -52,9 +52,9 @@
     <section class="hero" id="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="hero-badge">Open Source &middot; MIT License &middot; v0.1.0</div>
-                <h1 class="hero-title">Chunk. Embed.<br><span class="gradient-text">Ship Faster.</span></h1>
-                <p class="hero-subtitle">Partio is a containerized chunking and embeddings controller that simplifies document processing for RAG pipelines, semantic search, and AI applications. Two Docker containers. One API. Every language.</p>
+                <div class="hero-badge">Open Source &middot; MIT License &middot; v0.2.0</div>
+                <h1 class="hero-title">Summarize. Chunk. Embed.<br><span class="gradient-text">Ship Faster.</span></h1>
+                <p class="hero-subtitle">Partio is a containerized summarization, chunking and embeddings controller that simplifies document processing for RAG pipelines, semantic search, and AI applications. Two Docker containers. One API. Every language.</p>
                 <div class="hero-ctas">
                     <a href="#getting-started" class="btn btn-primary btn-lg">Get Started</a>
                     <a href="https://github.com/jchristn/Partio" class="btn btn-outline btn-lg" target="_blank" rel="noopener">
@@ -73,6 +73,7 @@
                     <span class="badge"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg> Multi-Tenant</span>
                     <span class="badge"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> RESTful API</span>
                     <span class="badge"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg> React Dashboard</span>
+                    <span class="badge"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg> LLM Summarization</span>
                 </div>
             </div>
             <div class="hero-terminal">
@@ -89,16 +90,23 @@
     https://raw.githubusercontent.com/jchristn/Partio/main/docker/compose.yaml
 <span class="t-prompt">$</span> docker compose up -d
 
-<span class="t-comment"># Chunk and embed a document</span>
-<span class="t-prompt">$</span> curl -X POST http://localhost:8400/v1.0/endpoints/ep_default/process \
+<span class="t-comment"># Summarize, chunk, and embed a document</span>
+<span class="t-prompt">$</span> curl -X POST http://localhost:8400/v1.0/process \
     -H <span class="t-string">"Authorization: Bearer default"</span> \
     -H <span class="t-string">"Content-Type: application/json"</span> \
     -d <span class="t-string">'{
       "Type": "Text",
       "Text": "Partio makes chunking and embedding easy.",
+      "SummarizationConfiguration": {
+        "CompletionEndpointId": "cep_default",
+        "Order": "TopDown"
+      },
       "ChunkingConfiguration": {
         "Strategy": "FixedTokenCount",
         "FixedTokenCount": 256
+      },
+      "EmbeddingConfiguration": {
+        "EmbeddingEndpointId": "eep_default"
       }
     }'</span>
 
@@ -114,7 +122,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>Why Partio?</h2>
-                <p>Stop building chunking and embedding infrastructure from scratch. Partio gives you production-ready document processing in minutes.</p>
+                <p>Stop building summarization, chunking, and embedding infrastructure from scratch. Partio gives you production-ready document processing in minutes.</p>
             </div>
             <div class="benefits-grid">
                 <div class="benefit-card">
@@ -123,6 +131,13 @@
                     </div>
                     <h3>Three Containers, Done</h3>
                     <p>Just <code>docker compose up</code> and pull your models. No cluster management, no complex infrastructure.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg>
+                    </div>
+                    <h3>LLM-Powered Summarization</h3>
+                    <p>Generate intelligent summaries of your content before chunking and embedding. Choose between top-down or bottom-up strategies with configurable prompts and retry logic.</p>
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">
@@ -168,7 +183,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>Everything You Need</h2>
-                <p>Partio handles the hard parts of document processing so you can focus on building your application.</p>
+                <p>Partio handles the hard parts of summarization, chunking, and embedding so you can focus on building your application.</p>
             </div>
             <div class="features-columns">
                 <div class="feature-group">
@@ -177,6 +192,9 @@
                         Processing
                     </h3>
                     <ul class="feature-list">
+                        <li>LLM-powered summarization with top-down and bottom-up strategies</li>
+                        <li>Hierarchical semantic cells with parent-child relationships</li>
+                        <li>Completion endpoint management for inference/summarization</li>
                         <li>8 semantic cell types (Text, Code, List, Table, Hyperlink, Meta, Binary, Image)</li>
                         <li>11 chunking strategies with configurable overlap</li>
                         <li>Sliding window overlap for context continuity</li>
@@ -211,7 +229,7 @@
                         <li>Three-tier authentication (Admin, Credential, Public)</li>
                         <li>Scoped bearer tokens per tenant and user</li>
                         <li>Request history with full audit logging</li>
-                        <li>Upstream embedding call tracking</li>
+                        <li>Upstream embedding and completion call tracking</li>
                         <li>Configurable retention and automatic cleanup</li>
                         <li>Postman collection with 50+ pre-built requests</li>
                     </ul>
@@ -225,7 +243,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>How It Works</h2>
-                <p>Partio sits between your application and your embedding provider, handling chunking, embedding, and management.</p>
+                <p>Partio sits between your application and your providers, handling summarization, chunking, embedding, and management.</p>
             </div>
             <div class="arch-diagram">
                 <div class="arch-row">
@@ -247,7 +265,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
                         </div>
                         <strong>Partio Server</strong>
-                        <span>:8400 &middot; Chunking &middot; Routing</span>
+                        <span>:8400 &middot; Summarize &middot; Chunk &middot; Embed</span>
                     </div>
                     <div class="arch-node arch-dashboard">
                         <div class="arch-node-icon">
@@ -259,7 +277,7 @@
                 </div>
                 <div class="arch-arrow">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
-                    <span>Embedding Calls</span>
+                    <span>Embedding &amp; Completion Calls</span>
                 </div>
                 <div class="arch-row arch-row-bottom">
                     <div class="arch-node arch-provider">
@@ -369,7 +387,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>Why Not Roll Your Own?</h2>
-                <p>You could build chunking and embedding infrastructure yourself. Here's what that looks like compared to Partio.</p>
+                <p>You could build summarization, chunking, and embedding infrastructure yourself. Here's what that looks like compared to Partio.</p>
             </div>
             <div class="comparison-table-wrapper">
                 <table class="comparison-table">
@@ -387,12 +405,17 @@
                             <td class="highlight">Minutes</td>
                         </tr>
                         <tr>
+                            <td>Summarization</td>
+                            <td>Custom LLM integration</td>
+                            <td class="highlight">Built-in top-down &amp; bottom-up strategies</td>
+                        </tr>
+                        <tr>
                             <td>Chunking strategies</td>
                             <td>Build each one yourself</td>
                             <td class="highlight">11 strategies, configurable</td>
                         </tr>
                         <tr>
-                            <td>Embedding providers</td>
+                            <td>Embedding &amp; inference providers</td>
                             <td>Hard-coded per provider</td>
                             <td class="highlight">Ollama + OpenAI-compatible, swap freely</td>
                         </tr>
@@ -447,7 +470,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>Simple by Design</h2>
-                <p>Chunk and embed documents in just a few lines of code, in any language.</p>
+                <p>Summarize, chunk, and embed documents in just a few lines of code, in any language.</p>
             </div>
             <div class="tabs">
                 <div class="tab-bar">
@@ -463,39 +486,30 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                                 <span>Copy</span>
                             </button>
-<pre><code><span class="t-comment"># Process a text document</span>
-curl -X POST http://localhost:8400/v1.0/endpoints/ep_default/process \
+<pre><code><span class="t-comment"># Summarize, chunk, and embed a text document</span>
+curl -X POST http://localhost:8400/v1.0/process \
   -H <span class="t-string">"Authorization: Bearer default"</span> \
   -H <span class="t-string">"Content-Type: application/json"</span> \
   -d <span class="t-string">'{
     "Type": "Text",
-    "Text": "Retrieval-augmented generation (RAG) improves LLM responses by grounding them in external knowledge. Documents are chunked, embedded, and stored in a vector database for efficient retrieval at query time.",
-    "ChunkingConfiguration": {
-      "Strategy": "SentenceBased"
-    }
+    "Text": "RAG improves LLM responses by grounding them...",
+    "SummarizationConfiguration": {
+      "CompletionEndpointId": "cep_default",
+      "Order": "TopDown"
+    },
+    "ChunkingConfiguration": { "Strategy": "SentenceBased" },
+    "EmbeddingConfiguration": { "EmbeddingEndpointId": "eep_default" }
   }'</span>
 
-<span class="t-comment"># Batch process multiple documents</span>
-curl -X POST http://localhost:8400/v1.0/endpoints/ep_default/process/batch \
-  -H <span class="t-string">"Authorization: Bearer default"</span> \
-  -H <span class="t-string">"Content-Type: application/json"</span> \
-  -d <span class="t-string">'[
-    { "Type": "Text", "Text": "First document content..." },
-    { "Type": "Code", "Text": "def hello(): return \"world\"" },
-    { "Type": "Table", "Text": "Name,Age\nAlice,30\nBob,25" }
-  ]'</span>
-
-<span class="t-comment"># Regex-based chunking (split on Markdown headings)</span>
-curl -X POST http://localhost:8400/v1.0/endpoints/ep_default/process \
+<span class="t-comment"># Process without summarization (chunking + embedding only)</span>
+curl -X POST http://localhost:8400/v1.0/process \
   -H <span class="t-string">"Authorization: Bearer default"</span> \
   -H <span class="t-string">"Content-Type: application/json"</span> \
   -d <span class="t-string">'{
     "Type": "Text",
-    "Text": "# Introduction\nWelcome to the guide.\n# Setup\nInstall the dependencies.\n# Usage\nRun the command.",
-    "ChunkingConfiguration": {
-      "Strategy": "RegexBased",
-      "RegexPattern": "^# "
-    }
+    "Text": "# Introduction\nWelcome.\n# Setup\nInstall deps.",
+    "ChunkingConfiguration": { "Strategy": "RegexBased", "RegexPattern": "^# " },
+    "EmbeddingConfiguration": { "EmbeddingEndpointId": "eep_default" }
   }'</span></code></pre>
                         </div>
                     </div>
@@ -514,30 +528,22 @@ curl -X POST http://localhost:8400/v1.0/endpoints/ep_default/process \
     health = client.health()
     <span class="t-builtin">print</span>(f<span class="t-string">"Server: {health['Status']} v{health['Version']}"</span>)
 
-    <span class="t-comment"># Process a text document with sentence-based chunking</span>
-    result = client.process(<span class="t-string">"ep_default"</span>, {
+    <span class="t-comment"># Summarize, chunk, and embed a text document</span>
+    result = client.process({
         <span class="t-string">"Type"</span>: <span class="t-string">"Text"</span>,
-        <span class="t-string">"Text"</span>: <span class="t-string">"RAG improves LLM responses by grounding them in external knowledge. Documents are chunked and embedded for retrieval."</span>,
-        <span class="t-string">"ChunkingConfiguration"</span>: {
-            <span class="t-string">"Strategy"</span>: <span class="t-string">"SentenceBased"</span>
-        }
+        <span class="t-string">"Text"</span>: <span class="t-string">"RAG improves LLM responses by grounding them..."</span>,
+        <span class="t-string">"SummarizationConfiguration"</span>: {
+            <span class="t-string">"CompletionEndpointId"</span>: <span class="t-string">"cep_default"</span>,
+            <span class="t-string">"Order"</span>: <span class="t-string">"TopDown"</span>
+        },
+        <span class="t-string">"ChunkingConfiguration"</span>: { <span class="t-string">"Strategy"</span>: <span class="t-string">"SentenceBased"</span> },
+        <span class="t-string">"EmbeddingConfiguration"</span>: { <span class="t-string">"EmbeddingEndpointId"</span>: <span class="t-string">"eep_default"</span> }
     })
 
     <span class="t-comment"># Access chunks and embeddings</span>
     <span class="t-keyword">for</span> chunk <span class="t-keyword">in</span> result[<span class="t-string">"Chunks"</span>]:
         <span class="t-builtin">print</span>(f<span class="t-string">"Chunk: {chunk['Text'][:50]}..."</span>)
-        <span class="t-builtin">print</span>(f<span class="t-string">"Embedding dims: {len(chunk['Embeddings'])}"</span>)
-
-    <span class="t-comment"># Regex-based chunking (split on Markdown headings)</span>
-    regex_result = client.process(<span class="t-string">"ep_default"</span>, {
-        <span class="t-string">"Type"</span>: <span class="t-string">"Text"</span>,
-        <span class="t-string">"Text"</span>: <span class="t-string">"# Intro\nWelcome.\n# Setup\nInstall deps.\n# Usage\nRun it."</span>,
-        <span class="t-string">"ChunkingConfiguration"</span>: {
-            <span class="t-string">"Strategy"</span>: <span class="t-string">"RegexBased"</span>,
-            <span class="t-string">"RegexPattern"</span>: <span class="t-string">"^# "</span>
-        }
-    })
-    <span class="t-builtin">print</span>(f<span class="t-string">"Regex chunks: {len(regex_result['Chunks'])}"</span>)</code></pre>
+        <span class="t-builtin">print</span>(f<span class="t-string">"Embedding dims: {len(chunk['Embeddings'])}"</span>)</code></pre>
                         </div>
                     </div>
                     <div class="tab-panel" id="tab-javascript">
@@ -551,26 +557,19 @@ curl -X POST http://localhost:8400/v1.0/endpoints/ep_default/process \
 <span class="t-comment">// Connect to Partio (zero dependencies, native fetch)</span>
 <span class="t-keyword">const</span> client = <span class="t-keyword">new</span> PartioClient(<span class="t-string">'http://localhost:8400'</span>, <span class="t-string">'partioadmin'</span>);
 
-<span class="t-comment">// Process a text document</span>
-<span class="t-keyword">const</span> result = <span class="t-keyword">await</span> client.process(<span class="t-string">'ep_default'</span>, {
+<span class="t-comment">// Summarize, chunk, and embed a text document</span>
+<span class="t-keyword">const</span> result = <span class="t-keyword">await</span> client.process({
   Type: <span class="t-string">'Text'</span>,
-  Text: <span class="t-string">'RAG improves LLM responses by grounding them in external knowledge.'</span>,
-  ChunkingConfiguration: {
-    Strategy: <span class="t-string">'FixedTokenCount'</span>,
-    FixedTokenCount: <span class="t-number">256</span>,
-    OverlapCount: <span class="t-number">32</span>
-  }
+  Text: <span class="t-string">'RAG improves LLM responses by grounding them...'</span>,
+  SummarizationConfiguration: {
+    CompletionEndpointId: <span class="t-string">'cep_default'</span>,
+    Order: <span class="t-string">'TopDown'</span>
+  },
+  ChunkingConfiguration: { Strategy: <span class="t-string">'FixedTokenCount'</span>, FixedTokenCount: <span class="t-number">256</span> },
+  EmbeddingConfiguration: { EmbeddingEndpointId: <span class="t-string">'eep_default'</span> }
 });
 
-<span class="t-comment">// Process a table with specialized chunking</span>
-<span class="t-keyword">const</span> tableResult = <span class="t-keyword">await</span> client.process(<span class="t-string">'ep_default'</span>, {
-  Type: <span class="t-string">'Table'</span>,
-  Text: <span class="t-string">'Name,Role,Team\nAlice,Engineer,Platform\nBob,Designer,Product'</span>,
-  ChunkingConfiguration: { Strategy: <span class="t-string">'RowWithHeaders'</span> }
-});
-
-console.log(<span class="t-string">`Chunks: ${result.Chunks.length}`</span>);
-console.log(<span class="t-string">`Embedding dims: ${result.Chunks[0].Embeddings.length}`</span>);</code></pre>
+console.log(<span class="t-string">`Chunks: ${result.Chunks.length}`</span>);</code></pre>
                         </div>
                     </div>
                     <div class="tab-panel" id="tab-csharp">
@@ -585,25 +584,49 @@ console.log(<span class="t-string">`Embedding dims: ${result.Chunks[0].Embedding
 <span class="t-comment">// Connect to Partio</span>
 <span class="t-keyword">using var</span> client = <span class="t-keyword">new</span> PartioClient(<span class="t-string">"http://localhost:8400"</span>, <span class="t-string">"partioadmin"</span>);
 
-<span class="t-comment">// Process a text document</span>
-<span class="t-keyword">var</span> response = <span class="t-keyword">await</span> client.ProcessAsync(<span class="t-string">"ep_default"</span>, <span class="t-keyword">new</span> SemanticCellRequest
+<span class="t-comment">// Summarize, chunk, and embed a text document</span>
+<span class="t-keyword">var</span> response = <span class="t-keyword">await</span> client.ProcessAsync(<span class="t-keyword">new</span> SemanticCellRequest
 {
     Type = <span class="t-string">"Text"</span>,
-    Text = <span class="t-string">"RAG improves LLM responses by grounding them in external knowledge."</span>,
+    Text = <span class="t-string">"RAG improves LLM responses..."</span>,
+    SummarizationConfiguration = <span class="t-keyword">new</span> SummarizationConfiguration
+    {
+        CompletionEndpointId = <span class="t-string">"cep_default"</span>,
+        Order = <span class="t-string">"TopDown"</span>
+    },
     ChunkingConfiguration = <span class="t-keyword">new</span> ChunkingConfiguration
     {
         Strategy = <span class="t-string">"SentenceBased"</span>
+    },
+    EmbeddingConfiguration = <span class="t-keyword">new</span> EmbeddingConfiguration
+    {
+        EmbeddingEndpointId = <span class="t-string">"eep_default"</span>
     }
-});
-
-<span class="t-comment">// Access chunks and embeddings</span>
-<span class="t-keyword">foreach</span> (<span class="t-keyword">var</span> chunk <span class="t-keyword">in</span> response.Chunks)
-{
-    Console.WriteLine($<span class="t-string">"Chunk: {chunk.Text[..50]}..."</span>);
-    Console.WriteLine($<span class="t-string">"Embedding dims: {chunk.Embeddings.Count}"</span>);
-}</code></pre>
+});</code></pre>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Summarization Strategies -->
+    <section class="strategies" id="summarization-strategies">
+        <div class="container">
+            <div class="section-header">
+                <h2>Summarization Strategies</h2>
+                <p>Optionally summarize your content before chunking and embedding. Partio uses LLM-powered inference endpoints to generate intelligent summaries.</p>
+            </div>
+            <div class="strategies-grid">
+                <div class="strategy-card">
+                    <h4>TopDown</h4>
+                    <p>Summarize parent cells first, then children. Context flows downward, providing each child with the parent's summary for richer, contextually-aware summaries.</p>
+                    <span class="strategy-types">All cell types</span>
+                </div>
+                <div class="strategy-card">
+                    <h4>BottomUp</h4>
+                    <p>Summarize leaf cells first, then work upward. Parent summaries incorporate child summaries, building a comprehensive understanding from the ground up.</p>
+                    <span class="strategy-types">All cell types</span>
                 </div>
             </div>
         </div>
@@ -732,12 +755,26 @@ curl http://localhost:11434/api/pull -d "{\"name\": \"all-minilm\"}"</code></pre
                             <div class="start-step">
                                 <div class="step-number">4</div>
                                 <div class="step-content">
+                                    <h4>Pull a completion model (for summarization)</h4>
+                                    <div class="code-block">
+                                        <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+<pre><code><span class="t-comment"># Bash / macOS / Linux</span>
+curl http://localhost:11434/api/pull -d '{"name": "gemma3:4b"}'
+
+<span class="t-comment"># Windows Terminal (cmd)</span>
+curl http://localhost:11434/api/pull -d "{\"name\": \"gemma3:4b\"}"</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="start-step">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
                                     <h4>Verify it's running</h4>
                                     <div class="code-block">
                                         <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
 <pre><code><span class="t-comment"># Server health check</span>
 curl http://localhost:8400/
-<span class="t-output">{"Status":"Healthy","Version":"0.1.0"}</span>
+<span class="t-output">{"Status":"Healthy","Version":"0.2.0"}</span>
 
 <span class="t-comment"># Open the dashboard</span>
 open http://localhost:8401</code></pre>
@@ -918,7 +955,7 @@ npm run dev</code></pre>
                     </ul>
                     <div class="code-block code-block-sm">
 <pre><code><span class="t-keyword">using var</span> client = <span class="t-keyword">new</span> PartioClient(endpoint, key);
-<span class="t-keyword">var</span> result = <span class="t-keyword">await</span> client.ProcessAsync(epId, request);</code></pre>
+<span class="t-keyword">var</span> result = <span class="t-keyword">await</span> client.ProcessAsync(request);</code></pre>
                     </div>
                     <a href="https://github.com/jchristn/Partio/tree/main/sdk/csharp" class="btn btn-outline btn-sm" target="_blank" rel="noopener">View SDK</a>
                 </div>
@@ -938,7 +975,7 @@ npm run dev</code></pre>
                     </ul>
                     <div class="code-block code-block-sm">
 <pre><code><span class="t-keyword">with</span> PartioClient(endpoint, key) <span class="t-keyword">as</span> client:
-    result = client.process(ep_id, request)</code></pre>
+    result = client.process(request)</code></pre>
                     </div>
                     <a href="https://github.com/jchristn/Partio/tree/main/sdk/python" class="btn btn-outline btn-sm" target="_blank" rel="noopener">View SDK</a>
                 </div>
@@ -958,7 +995,7 @@ npm run dev</code></pre>
                     </ul>
                     <div class="code-block code-block-sm">
 <pre><code><span class="t-keyword">const</span> client = <span class="t-keyword">new</span> PartioClient(endpoint, key);
-<span class="t-keyword">const</span> result = <span class="t-keyword">await</span> client.process(epId, request);</code></pre>
+<span class="t-keyword">const</span> result = <span class="t-keyword">await</span> client.process(request);</code></pre>
                     </div>
                     <a href="https://github.com/jchristn/Partio/tree/main/sdk/js" class="btn btn-outline btn-sm" target="_blank" rel="noopener">View SDK</a>
                 </div>
@@ -1006,14 +1043,14 @@ npm run dev</code></pre>
                         <div class="api-endpoint">
                             <div class="api-endpoint-route">
                                 <span class="api-method post">POST</span>
-                                <code>/v1.0/endpoints/{id}/process</code>
+                                <code>/v1.0/process</code>
                             </div>
                             <span class="api-desc">Chunk &amp; embed a single document</span>
                         </div>
                         <div class="api-endpoint">
                             <div class="api-endpoint-route">
                                 <span class="api-method post">POST</span>
-                                <code>/v1.0/endpoints/{id}/process/batch</code>
+                                <code>/v1.0/process/batch</code>
                             </div>
                             <span class="api-desc">Batch process multiple documents</span>
                         </div>
@@ -1046,9 +1083,16 @@ npm run dev</code></pre>
                         <div class="api-endpoint">
                             <div class="api-endpoint-route">
                                 <span class="api-method put">PUT</span>
-                                <code>/v1.0/endpoints</code>
+                                <code>/v1.0/endpoints/embedding</code>
                             </div>
                             <span class="api-desc">Create embedding endpoint</span>
+                        </div>
+                        <div class="api-endpoint">
+                            <div class="api-endpoint-route">
+                                <span class="api-method put">PUT</span>
+                                <code>/v1.0/endpoints/completion</code>
+                            </div>
+                            <span class="api-desc">Create completion endpoint</span>
                         </div>
                     </div>
                 </div>
@@ -1058,16 +1102,30 @@ npm run dev</code></pre>
                         <div class="api-endpoint">
                             <div class="api-endpoint-route">
                                 <span class="api-method get">GET</span>
-                                <code>/v1.0/endpoints/{id}/health</code>
+                                <code>/v1.0/endpoints/embedding/{id}/health</code>
                             </div>
-                            <span class="api-desc">Single endpoint health</span>
+                            <span class="api-desc">Single embedding endpoint health</span>
                         </div>
                         <div class="api-endpoint">
                             <div class="api-endpoint-route">
                                 <span class="api-method get">GET</span>
-                                <code>/v1.0/endpoints/health</code>
+                                <code>/v1.0/endpoints/embedding/health</code>
                             </div>
-                            <span class="api-desc">All endpoints health</span>
+                            <span class="api-desc">All embedding endpoints health</span>
+                        </div>
+                        <div class="api-endpoint">
+                            <div class="api-endpoint-route">
+                                <span class="api-method get">GET</span>
+                                <code>/v1.0/endpoints/completion/{id}/health</code>
+                            </div>
+                            <span class="api-desc">Single completion endpoint health</span>
+                        </div>
+                        <div class="api-endpoint">
+                            <div class="api-endpoint-route">
+                                <span class="api-method get">GET</span>
+                                <code>/v1.0/endpoints/completion/health</code>
+                            </div>
+                            <span class="api-desc">All completion endpoints health</span>
                         </div>
                     </div>
                 </div>
@@ -1113,7 +1171,7 @@ npm run dev</code></pre>
     <section class="cta-section" id="cta">
         <div class="container">
             <div class="cta-content">
-                <h2>Ready to Simplify Your Embedding Pipeline?</h2>
+                <h2>Ready to Simplify Your Processing Pipeline?</h2>
                 <p>Partio is free, open source, and MIT licensed. Get started in minutes with Docker or build from source.</p>
                 <div class="cta-buttons">
                     <a href="https://github.com/jchristn/Partio" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
@@ -1136,7 +1194,7 @@ npm run dev</code></pre>
                 <div class="footer-brand">
                     <img src="assets/logo-light-text.png" alt="Partio" class="footer-logo logo-dark-mode">
                     <img src="assets/logo-dark-text.png" alt="Partio" class="footer-logo logo-light-mode">
-                    <p>Containerized chunking and embeddings controller for AI applications.</p>
+                    <p>Containerized summarization, chunking, and embeddings controller for AI applications.</p>
                     <span class="footer-license">Released under the <a href="https://github.com/jchristn/Partio/blob/main/LICENSE.md" target="_blank" rel="noopener">MIT License</a></span>
                 </div>
                 <div class="footer-links-group">
