@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Partio - Containerized Summarization, Chunking &amp; Embeddings Controller</title>
-    <meta name="description" content="Partio is an open-source, containerized summarization, chunking, and embeddings controller. Simplify document processing and embedding with a RESTful API, multi-language SDKs, and a powerful dashboard.">
+    <meta name="description" content="Partio is an open-source, containerized summarization, chunking, and embeddings controller with Ollama, OpenAI, Gemini, and vLLM support. Simplify document processing with a RESTful API, multi-language SDKs, and a powerful dashboard.">
     <meta name="keywords" content="chunking, embeddings, RAG, semantic cells, docker, open source, AI, NLP, vector embeddings, document processing">
     <meta property="og:title" content="Partio - Containerized Summarization, Chunking & Embeddings Controller">
-    <meta property="og:description" content="Simplify document processing, summarization, and embedding with an open-source, containerized solution.">
+    <meta property="og:description" content="Simplify document processing, summarization, and embedding with an open-source, containerized solution that supports Ollama, OpenAI, Gemini, and vLLM.">
     <meta property="og:type" content="website">
     <link rel="icon" type="image/x-icon" href="assets/icon.ico">
     <link rel="icon" type="image/png" href="assets/icon.png">
@@ -54,7 +54,7 @@
             <div class="hero-content">
                 <div class="hero-badge">Open Source &middot; MIT License &middot; v0.2.0</div>
                 <h1 class="hero-title">Summarize. Chunk. Embed.<br><span class="gradient-text">Ship Faster.</span></h1>
-                <p class="hero-subtitle">Partio is a containerized summarization, chunking and embeddings controller that simplifies document processing for RAG pipelines, semantic search, and AI applications. Two Docker containers. One API. Every language.</p>
+                <p class="hero-subtitle">Partio is a containerized summarization, chunking and embeddings controller that simplifies document processing for RAG pipelines, semantic search, and AI applications. Three containers. One API. Every language. Ollama, OpenAI, Gemini, and vLLM all fit.</p>
                 <div class="hero-ctas">
                     <a href="#getting-started" class="btn btn-primary btn-lg">Get Started</a>
                     <a href="https://github.com/jchristn/Partio" class="btn btn-outline btn-lg" target="_blank" rel="noopener">
@@ -172,7 +172,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     </div>
                     <h3>Bring Your Own Provider</h3>
-                    <p>Works with Ollama, OpenAI, Azure OpenAI, vLLM, LocalAI, or any OpenAI-compatible API. Background health checks ensure endpoint reliability.</p>
+                    <p>Works with Ollama, OpenAI, Gemini, vLLM, Azure OpenAI, LocalAI, or other compatible APIs. Background health checks ensure endpoint reliability.</p>
                 </div>
             </div>
         </div>
@@ -243,7 +243,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>How It Works</h2>
-                <p>Partio sits between your application and your providers, handling summarization, chunking, embedding, and management.</p>
+                <p>Partio sits between your application and your providers, handling summarization, chunking, embedding, and provider management across Ollama, OpenAI, Gemini, and vLLM.</p>
             </div>
             <div class="arch-diagram">
                 <div class="arch-row">
@@ -298,8 +298,15 @@
                         <div class="arch-node-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
                         </div>
-                        <strong>Any Compatible</strong>
-                        <span>vLLM &middot; LocalAI &middot; Azure</span>
+                        <strong>Gemini</strong>
+                        <span>Google AI / Vertex-ready</span>
+                    </div>
+                    <div class="arch-node arch-provider">
+                        <div class="arch-node-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/><path d="M7 4v16"/><path d="M17 4v16"/></svg>
+                        </div>
+                        <strong>vLLM</strong>
+                        <span>OpenAI-compatible / Self-hosted</span>
                     </div>
                 </div>
             </div>
@@ -359,7 +366,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
                     </div>
                     <h3>Model Experimentation</h3>
-                    <p>Switch between embedding providers without changing application code. Compare Ollama, OpenAI, and other providers side by side using the same chunking strategies.</p>
+                    <p>Switch between embedding providers without changing application code. Compare Ollama, OpenAI, Gemini, and vLLM side by side using the same chunking strategies.</p>
                     <span class="use-case-audience">Data Scientists</span>
                 </div>
                 <div class="use-case-card" data-audience="ai-engineer">
@@ -417,7 +424,7 @@
                         <tr>
                             <td>Embedding &amp; inference providers</td>
                             <td>Hard-coded per provider</td>
-                            <td class="highlight">Ollama + OpenAI-compatible, swap freely</td>
+                            <td class="highlight">Ollama, OpenAI, Gemini, and vLLM</td>
                         </tr>
                         <tr>
                             <td>Multi-tenancy</td>
@@ -903,7 +910,7 @@ npm run dev</code></pre>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                         </div>
                         <h4>Endpoint Configuration</h4>
-                        <p>Configure Ollama and OpenAI-compatible endpoints. Set health check intervals, thresholds, and monitor endpoint status in real time.</p>
+                        <p>Configure Ollama, OpenAI, Gemini, and vLLM endpoints. Set health check intervals, thresholds, and monitor endpoint status in real time.</p>
                     </div>
                     <div class="dashboard-card">
                         <div class="dashboard-card-icon">
