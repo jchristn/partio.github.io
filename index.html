@@ -50,11 +50,12 @@
 
     <!-- Hero -->
     <section class="hero" id="hero">
+        <div class="hero-bg" aria-hidden="true"></div>
         <div class="container">
             <div class="hero-content">
-                <div class="hero-badge">Open Source &middot; MIT License &middot; v0.2.0</div>
+                <div class="hero-badge">Open Source &middot; MIT License &middot; v0.4.0</div>
                 <h1 class="hero-title">Summarize. Chunk. Embed.<br><span class="gradient-text">Ship Faster.</span></h1>
-                <p class="hero-subtitle">Partio is a containerized summarization, chunking and embeddings controller that simplifies document processing for RAG pipelines, semantic search, and AI applications. Three containers. One API. Every language. Ollama, OpenAI, Gemini, and vLLM all fit.</p>
+                <p class="hero-subtitle">Partio is a containerized summarization, chunking, and embeddings controller that simplifies document processing for RAG pipelines, semantic search, and AI applications. Run the full pipeline in one call &mdash; or chunk, embed, and summarize as independent stages. Ollama, OpenAI, Gemini, and vLLM all fit.</p>
                 <div class="hero-ctas">
                     <a href="#getting-started" class="btn btn-primary btn-lg">Get Started</a>
                     <a href="https://github.com/jchristn/Partio" class="btn btn-outline btn-lg" target="_blank" rel="noopener">
@@ -121,6 +122,7 @@
     <section class="benefits" id="benefits">
         <div class="container">
             <div class="section-header">
+                <span class="eyebrow">Overview</span>
                 <h2>Why Partio?</h2>
                 <p>Stop building summarization, chunking, and embedding infrastructure from scratch. Partio gives you production-ready document processing in minutes.</p>
             </div>
@@ -144,7 +146,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
                     </div>
                     <h3>Semantic Cell Processing</h3>
-                    <p>Process text, code, lists, tables, hyperlinks, images, and more. Partio understands your data structure and chunks it intelligently based on content type.</p>
+                    <p>Process text, code, lists, tables, hyperlinks, and metadata as hierarchical semantic cells. Partio understands your data structure and chunks it intelligently based on content type.</p>
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">
@@ -182,6 +184,7 @@
     <section class="features" id="features">
         <div class="container">
             <div class="section-header">
+                <span class="eyebrow">Capabilities</span>
                 <h2>Everything You Need</h2>
                 <p>Partio handles the hard parts of summarization, chunking, and embedding so you can focus on building your application.</p>
             </div>
@@ -194,13 +197,16 @@
                     <ul class="feature-list">
                         <li>LLM-powered summarization with top-down and bottom-up strategies</li>
                         <li>Hierarchical semantic cells with parent-child relationships</li>
-                        <li>Completion endpoint management for inference/summarization</li>
-                        <li>8 semantic cell types (Text, Code, List, Table, Hyperlink, Meta, Binary, Image)</li>
+                        <li>Standalone chunk, embed, and summarize endpoints for independent, timeable stages</li>
+                        <li>Completion (inference) endpoint management for summarization</li>
+                        <li>6 semantic cell input types (Text, List, Table, Code, Hyperlink, Meta)</li>
                         <li>11 chunking strategies with configurable overlap</li>
                         <li>Sliding window overlap for context continuity</li>
                         <li>Context prefix injection per chunk</li>
                         <li>Batch processing for high-throughput workloads</li>
                         <li>L2 normalization for cosine similarity</li>
+                        <li>Endpoint-aware tokenization (cl100k_base &amp; BERT WordPiece)</li>
+                        <li>Model load &amp; warm API for embedding and inference endpoints</li>
                         <li>Deterministic, reproducible chunking output</li>
                     </ul>
                 </div>
@@ -242,6 +248,7 @@
     <section class="architecture" id="architecture">
         <div class="container">
             <div class="section-header">
+                <span class="eyebrow">Architecture</span>
                 <h2>How It Works</h2>
                 <p>Partio sits between your application and your providers, handling summarization, chunking, embedding, and provider management across Ollama, OpenAI, Gemini, and vLLM.</p>
             </div>
@@ -317,6 +324,7 @@
     <section class="use-cases" id="use-cases">
         <div class="container">
             <div class="section-header">
+                <span class="eyebrow">Use Cases</span>
                 <h2>Built for Your Workflow</h2>
                 <p>Whether you're building RAG pipelines, semantic search, or AI-powered applications, Partio fits right in.</p>
             </div>
@@ -393,6 +401,7 @@
     <section class="comparison" id="comparison">
         <div class="container">
             <div class="section-header">
+                <span class="eyebrow">Partio vs. DIY</span>
                 <h2>Why Not Roll Your Own?</h2>
                 <p>You could build summarization, chunking, and embedding infrastructure yourself. Here's what that looks like compared to Partio.</p>
             </div>
@@ -476,66 +485,52 @@
     <section class="examples" id="examples">
         <div class="container">
             <div class="section-header">
-                <h2>Simple by Design</h2>
-                <p>Summarize, chunk, and embed documents in just a few lines of code, in any language.</p>
+                <span class="eyebrow">Developer Experience</span>
+                <h2>One Pipeline, or One Stage at a Time</h2>
+                <p>Run the full flow through <code>/v1.0/process</code> &mdash; or call the standalone <code>/v1.0/chunk</code>, <code>/v1.0/embed</code>, and <code>/v1.0/summarize</code> endpoints to run and time each stage independently.</p>
             </div>
-            <div class="tabs">
-                <div class="tab-bar">
-                    <button class="tab-btn active" data-tab="curl">cURL</button>
-                    <button class="tab-btn" data-tab="python">Python</button>
-                    <button class="tab-btn" data-tab="javascript">JavaScript</button>
-                    <button class="tab-btn" data-tab="csharp">C#</button>
-                </div>
-                <div class="tab-panels">
-                    <div class="tab-panel active" id="tab-curl">
+            <div class="example-modes" id="exampleModes">
+                <button class="mode-btn active" data-mode="full">Full Pipeline</button>
+                <button class="mode-btn" data-mode="chunk">Chunking Only</button>
+                <button class="mode-btn" data-mode="embed">Embedding Only</button>
+                <button class="mode-btn" data-mode="summarize">Summarization Only</button>
+            </div>
+            <div class="example-mode active" id="mode-full">
+                <p class="example-lead">Summarization, chunking, and embedding in one <code>POST /v1.0/process</code> call &mdash; ideal for RAG ingestion.</p>
+                <div class="tabs">
+                    <div class="tab-bar">
+                    <button class="tab-btn active" data-tab="full-curl">cURL</button>
+                    <button class="tab-btn" data-tab="full-python">Python</button>
+                    <button class="tab-btn" data-tab="full-javascript">JavaScript</button>
+                    <button class="tab-btn" data-tab="full-csharp">C#</button>
+                    </div>
+                    <div class="tab-panels">
+                    <div class="tab-panel active" id="tab-full-curl">
                         <div class="code-block">
-                            <button class="copy-btn" aria-label="Copy code">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                                <span>Copy</span>
-                            </button>
-<pre><code><span class="t-comment"># Summarize, chunk, and embed a text document</span>
+                            <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+<pre><code><span class="t-comment"># Full pipeline: summarize &rarr; chunk &rarr; embed in a single call</span>
 curl -X POST http://localhost:8400/v1.0/process \
-  -H <span class="t-string">"Authorization: Bearer default"</span> \
+  -H <span class="t-string">"Authorization: Bearer partioadmin"</span> \
   -H <span class="t-string">"Content-Type: application/json"</span> \
   -d <span class="t-string">'{
     "Type": "Text",
-    "Text": "RAG improves LLM responses by grounding them...",
+    "Text": "RAG improves LLM responses by grounding them in retrieved context...",
     "SummarizationConfiguration": {
       "CompletionEndpointId": "cep_default",
       "Order": "TopDown"
     },
-    "ChunkingConfiguration": { "Strategy": "SentenceBased" },
-    "EmbeddingConfiguration": { "EmbeddingEndpointId": "eep_default" }
-  }'</span>
-
-<span class="t-comment"># Process without summarization (chunking + embedding only)</span>
-curl -X POST http://localhost:8400/v1.0/process \
-  -H <span class="t-string">"Authorization: Bearer default"</span> \
-  -H <span class="t-string">"Content-Type: application/json"</span> \
-  -d <span class="t-string">'{
-    "Type": "Text",
-    "Text": "# Introduction\nWelcome.\n# Setup\nInstall deps.",
-    "ChunkingConfiguration": { "Strategy": "RegexBased", "RegexPattern": "^# " },
-    "EmbeddingConfiguration": { "EmbeddingEndpointId": "eep_default" }
+    "ChunkingConfiguration": { "Strategy": "SentenceBased", "FixedTokenCount": 256 },
+    "EmbeddingConfiguration": { "EmbeddingEndpointId": "eep_default", "L2Normalization": true }
   }'</span></code></pre>
                         </div>
                     </div>
-                    <div class="tab-panel" id="tab-python">
+                    <div class="tab-panel" id="tab-full-python">
                         <div class="code-block">
-                            <button class="copy-btn" aria-label="Copy code">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                                <span>Copy</span>
-                            </button>
+                            <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
 <pre><code><span class="t-keyword">from</span> partio_sdk <span class="t-keyword">import</span> PartioClient
 
-<span class="t-comment"># Connect to Partio</span>
 <span class="t-keyword">with</span> PartioClient(<span class="t-string">"http://localhost:8400"</span>, <span class="t-string">"partioadmin"</span>) <span class="t-keyword">as</span> client:
-
-    <span class="t-comment"># Check server health</span>
-    health = client.health()
-    <span class="t-builtin">print</span>(f<span class="t-string">"Server: {health['Status']} v{health['Version']}"</span>)
-
-    <span class="t-comment"># Summarize, chunk, and embed a text document</span>
+    <span class="t-comment"># Summarize, chunk, and embed in one request</span>
     result = client.process({
         <span class="t-string">"Type"</span>: <span class="t-string">"Text"</span>,
         <span class="t-string">"Text"</span>: <span class="t-string">"RAG improves LLM responses by grounding them..."</span>,
@@ -547,31 +542,22 @@ curl -X POST http://localhost:8400/v1.0/process \
         <span class="t-string">"EmbeddingConfiguration"</span>: { <span class="t-string">"EmbeddingEndpointId"</span>: <span class="t-string">"eep_default"</span> }
     })
 
-    <span class="t-comment"># Access chunks and embeddings</span>
     <span class="t-keyword">for</span> chunk <span class="t-keyword">in</span> result[<span class="t-string">"Chunks"</span>]:
-        <span class="t-builtin">print</span>(f<span class="t-string">"Chunk: {chunk['Text'][:50]}..."</span>)
-        <span class="t-builtin">print</span>(f<span class="t-string">"Embedding dims: {len(chunk['Embeddings'])}"</span>)</code></pre>
+        <span class="t-builtin">print</span>(f<span class="t-string">"{chunk['Text'][:60]}... ({len(chunk['Embeddings'])} dims)"</span>)</code></pre>
                         </div>
                     </div>
-                    <div class="tab-panel" id="tab-javascript">
+                    <div class="tab-panel" id="tab-full-javascript">
                         <div class="code-block">
-                            <button class="copy-btn" aria-label="Copy code">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                                <span>Copy</span>
-                            </button>
+                            <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
 <pre><code><span class="t-keyword">import</span> { PartioClient } <span class="t-keyword">from</span> <span class="t-string">'./partio-sdk.js'</span>;
 
-<span class="t-comment">// Connect to Partio (zero dependencies, native fetch)</span>
 <span class="t-keyword">const</span> client = <span class="t-keyword">new</span> PartioClient(<span class="t-string">'http://localhost:8400'</span>, <span class="t-string">'partioadmin'</span>);
 
-<span class="t-comment">// Summarize, chunk, and embed a text document</span>
+<span class="t-comment">// Summarize, chunk, and embed in one request</span>
 <span class="t-keyword">const</span> result = <span class="t-keyword">await</span> client.process({
   Type: <span class="t-string">'Text'</span>,
   Text: <span class="t-string">'RAG improves LLM responses by grounding them...'</span>,
-  SummarizationConfiguration: {
-    CompletionEndpointId: <span class="t-string">'cep_default'</span>,
-    Order: <span class="t-string">'TopDown'</span>
-  },
+  SummarizationConfiguration: { CompletionEndpointId: <span class="t-string">'cep_default'</span>, Order: <span class="t-string">'TopDown'</span> },
   ChunkingConfiguration: { Strategy: <span class="t-string">'FixedTokenCount'</span>, FixedTokenCount: <span class="t-number">256</span> },
   EmbeddingConfiguration: { EmbeddingEndpointId: <span class="t-string">'eep_default'</span> }
 });
@@ -579,19 +565,14 @@ curl -X POST http://localhost:8400/v1.0/process \
 console.log(<span class="t-string">`Chunks: ${result.Chunks.length}`</span>);</code></pre>
                         </div>
                     </div>
-                    <div class="tab-panel" id="tab-csharp">
+                    <div class="tab-panel" id="tab-full-csharp">
                         <div class="code-block">
-                            <button class="copy-btn" aria-label="Copy code">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                                <span>Copy</span>
-                            </button>
+                            <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
 <pre><code><span class="t-keyword">using</span> Partio.Sdk;
 <span class="t-keyword">using</span> Partio.Sdk.Models;
 
-<span class="t-comment">// Connect to Partio</span>
 <span class="t-keyword">using var</span> client = <span class="t-keyword">new</span> PartioClient(<span class="t-string">"http://localhost:8400"</span>, <span class="t-string">"partioadmin"</span>);
 
-<span class="t-comment">// Summarize, chunk, and embed a text document</span>
 <span class="t-keyword">var</span> response = <span class="t-keyword">await</span> client.ProcessAsync(<span class="t-keyword">new</span> SemanticCellRequest
 {
     Type = <span class="t-string">"Text"</span>,
@@ -601,16 +582,241 @@ console.log(<span class="t-string">`Chunks: ${result.Chunks.length}`</span>);</c
         CompletionEndpointId = <span class="t-string">"cep_default"</span>,
         Order = <span class="t-string">"TopDown"</span>
     },
+    ChunkingConfiguration = <span class="t-keyword">new</span> ChunkingConfiguration { Strategy = <span class="t-string">"SentenceBased"</span> },
+    EmbeddingConfiguration = <span class="t-keyword">new</span> EmbeddingConfiguration { EmbeddingEndpointId = <span class="t-string">"eep_default"</span> }
+});</code></pre>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="example-mode" id="mode-chunk">
+                <p class="example-lead">Split content into token-bounded chunks with <code>POST /v1.0/chunk</code>. No embedding endpoint required &mdash; chunking uses a built-in <code>cl100k_base</code> tokenizer.</p>
+                <div class="tabs">
+                    <div class="tab-bar">
+                    <button class="tab-btn active" data-tab="chunk-curl">cURL</button>
+                    <button class="tab-btn" data-tab="chunk-python">Python</button>
+                    <button class="tab-btn" data-tab="chunk-javascript">JavaScript</button>
+                    <button class="tab-btn" data-tab="chunk-csharp">C#</button>
+                    </div>
+                    <div class="tab-panels">
+                    <div class="tab-panel active" id="tab-chunk-curl">
+                        <div class="code-block">
+                            <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+<pre><code><span class="t-comment"># Chunk only &mdash; no embedding endpoint needed (built-in cl100k_base tokenizer)</span>
+curl -X POST http://localhost:8400/v1.0/chunk \
+  -H <span class="t-string">"Authorization: Bearer partioadmin"</span> \
+  -H <span class="t-string">"Content-Type: application/json"</span> \
+  -d <span class="t-string">'{
+    "Type": "Text",
+    "Text": "Long document text to split into token-bounded chunks...",
+    "ChunkingConfiguration": {
+      "Strategy": "FixedTokenCount",
+      "FixedTokenCount": 256,
+      "OverlapCount": 32
+    }
+  }'</span>
+
+<span class="t-output"># { "Chunks": [ { "Text": "...", "Embeddings": [] } ], "Count": 3 }</span></code></pre>
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="tab-chunk-python">
+                        <div class="code-block">
+                            <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+<pre><code><span class="t-keyword">with</span> PartioClient(<span class="t-string">"http://localhost:8400"</span>, <span class="t-string">"partioadmin"</span>) <span class="t-keyword">as</span> client:
+    <span class="t-comment"># Chunk without embedding &mdash; fast, deterministic, no provider call</span>
+    result = client.chunk({
+        <span class="t-string">"Type"</span>: <span class="t-string">"Text"</span>,
+        <span class="t-string">"Text"</span>: <span class="t-string">"Long document text to split into token-bounded chunks..."</span>,
+        <span class="t-string">"ChunkingConfiguration"</span>: {
+            <span class="t-string">"Strategy"</span>: <span class="t-string">"FixedTokenCount"</span>,
+            <span class="t-string">"FixedTokenCount"</span>: <span class="t-number">256</span>,
+            <span class="t-string">"OverlapCount"</span>: <span class="t-number">32</span>
+        }
+    })
+
+    <span class="t-builtin">print</span>(f<span class="t-string">"{result['Count']} chunks (no embeddings)"</span>)</code></pre>
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="tab-chunk-javascript">
+                        <div class="code-block">
+                            <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+<pre><code><span class="t-comment">// Chunk without embedding &mdash; fast, deterministic, no provider call</span>
+<span class="t-keyword">const</span> result = <span class="t-keyword">await</span> client.chunk({
+  Type: <span class="t-string">'Text'</span>,
+  Text: <span class="t-string">'Long document text to split into token-bounded chunks...'</span>,
+  ChunkingConfiguration: { Strategy: <span class="t-string">'FixedTokenCount'</span>, FixedTokenCount: <span class="t-number">256</span>, OverlapCount: <span class="t-number">32</span> }
+});
+
+console.log(<span class="t-string">`${result.Count} chunks`</span>);</code></pre>
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="tab-chunk-csharp">
+                        <div class="code-block">
+                            <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+<pre><code><span class="t-comment">// Chunk without embedding &mdash; fast, deterministic, no provider call</span>
+<span class="t-keyword">var</span> result = <span class="t-keyword">await</span> client.ChunkAsync(<span class="t-keyword">new</span> ChunkRequest
+{
+    Type = <span class="t-string">"Text"</span>,
+    Text = <span class="t-string">"Long document text to split into token-bounded chunks..."</span>,
     ChunkingConfiguration = <span class="t-keyword">new</span> ChunkingConfiguration
     {
-        Strategy = <span class="t-string">"SentenceBased"</span>
-    },
-    EmbeddingConfiguration = <span class="t-keyword">new</span> EmbeddingConfiguration
-    {
-        EmbeddingEndpointId = <span class="t-string">"eep_default"</span>
+        Strategy = <span class="t-string">"FixedTokenCount"</span>,
+        FixedTokenCount = <span class="t-number">256</span>,
+        OverlapCount = <span class="t-number">32</span>
     }
 });</code></pre>
                         </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="example-mode" id="mode-embed">
+                <p class="example-lead">Generate embedding vectors for a batch of strings with <code>POST /v1.0/embed</code> &mdash; each input is embedded as-is, in order, with no chunking.</p>
+                <div class="tabs">
+                    <div class="tab-bar">
+                    <button class="tab-btn active" data-tab="embed-curl">cURL</button>
+                    <button class="tab-btn" data-tab="embed-python">Python</button>
+                    <button class="tab-btn" data-tab="embed-javascript">JavaScript</button>
+                    <button class="tab-btn" data-tab="embed-csharp">C#</button>
+                    </div>
+                    <div class="tab-panels">
+                    <div class="tab-panel active" id="tab-embed-curl">
+                        <div class="code-block">
+                            <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+<pre><code><span class="t-comment"># Embed only &mdash; vectors for a batch of strings, no chunking</span>
+curl -X POST http://localhost:8400/v1.0/embed \
+  -H <span class="t-string">"Authorization: Bearer partioadmin"</span> \
+  -H <span class="t-string">"Content-Type: application/json"</span> \
+  -d <span class="t-string">'{
+    "EndpointId": "eep_default",
+    "Input": ["first passage to embed", "second passage to embed"],
+    "L2Normalization": false
+  }'</span>
+
+<span class="t-output"># { "Embeddings": [[...],[...]], "Count": 2, "Dimensions": 384 }</span></code></pre>
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="tab-embed-python">
+                        <div class="code-block">
+                            <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+<pre><code><span class="t-keyword">with</span> PartioClient(<span class="t-string">"http://localhost:8400"</span>, <span class="t-string">"partioadmin"</span>) <span class="t-keyword">as</span> client:
+    <span class="t-comment"># Embed a batch of strings as-is (each input embedded in order)</span>
+    result = client.embed({
+        <span class="t-string">"EndpointId"</span>: <span class="t-string">"eep_default"</span>,
+        <span class="t-string">"Input"</span>: [<span class="t-string">"first passage to embed"</span>, <span class="t-string">"second passage to embed"</span>],
+        <span class="t-string">"L2Normalization"</span>: <span class="t-keyword">False</span>
+    })
+
+    <span class="t-builtin">print</span>(f<span class="t-string">"{result['Count']} vectors x {result['Dimensions']} dims"</span>)</code></pre>
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="tab-embed-javascript">
+                        <div class="code-block">
+                            <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+<pre><code><span class="t-comment">// Embed a batch of strings as-is (each input embedded in order)</span>
+<span class="t-keyword">const</span> result = <span class="t-keyword">await</span> client.embed({
+  EndpointId: <span class="t-string">'eep_default'</span>,
+  Input: [<span class="t-string">'first passage to embed'</span>, <span class="t-string">'second passage to embed'</span>],
+  L2Normalization: <span class="t-keyword">false</span>
+});
+
+console.log(<span class="t-string">`${result.Count} vectors x ${result.Dimensions} dims`</span>);</code></pre>
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="tab-embed-csharp">
+                        <div class="code-block">
+                            <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+<pre><code><span class="t-comment">// Embed a batch of strings as-is (each input embedded in order)</span>
+<span class="t-keyword">var</span> result = <span class="t-keyword">await</span> client.EmbedAsync(<span class="t-keyword">new</span> EmbedRequest
+{
+    EndpointId = <span class="t-string">"eep_default"</span>,
+    Input = <span class="t-keyword">new</span> List&lt;string&gt; { <span class="t-string">"first passage to embed"</span>, <span class="t-string">"second passage to embed"</span> },
+    L2Normalization = <span class="t-keyword">false</span>
+});</code></pre>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="example-mode" id="mode-summarize">
+                <p class="example-lead">Condense text through a completion (inference) endpoint with <code>POST /v1.0/summarize</code> &mdash; the same engine <code>/v1.0/process</code> uses, without chunking or embedding.</p>
+                <div class="tabs">
+                    <div class="tab-bar">
+                    <button class="tab-btn active" data-tab="summarize-curl">cURL</button>
+                    <button class="tab-btn" data-tab="summarize-python">Python</button>
+                    <button class="tab-btn" data-tab="summarize-javascript">JavaScript</button>
+                    <button class="tab-btn" data-tab="summarize-csharp">C#</button>
+                    </div>
+                    <div class="tab-panels">
+                    <div class="tab-panel active" id="tab-summarize-curl">
+                        <div class="code-block">
+                            <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+<pre><code><span class="t-comment"># Summarize only &mdash; through a completion (inference) endpoint</span>
+curl -X POST http://localhost:8400/v1.0/summarize \
+  -H <span class="t-string">"Authorization: Bearer partioadmin"</span> \
+  -H <span class="t-string">"Content-Type: application/json"</span> \
+  -d <span class="t-string">'{
+    "Text": "A long article that needs to be condensed into a short summary...",
+    "SummarizationConfiguration": {
+      "CompletionEndpointId": "cep_default",
+      "Order": "BottomUp",
+      "MaxSummaryTokens": 1024
+    }
+  }'</span>
+
+<span class="t-output"># { "Summary": "Short summary of the input text.", "Model": "gemma3:4b" }</span></code></pre>
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="tab-summarize-python">
+                        <div class="code-block">
+                            <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+<pre><code><span class="t-keyword">with</span> PartioClient(<span class="t-string">"http://localhost:8400"</span>, <span class="t-string">"partioadmin"</span>) <span class="t-keyword">as</span> client:
+    <span class="t-comment"># Summarize text without chunking or embedding</span>
+    result = client.summarize({
+        <span class="t-string">"Text"</span>: <span class="t-string">"A long article that needs to be condensed..."</span>,
+        <span class="t-string">"SummarizationConfiguration"</span>: {
+            <span class="t-string">"CompletionEndpointId"</span>: <span class="t-string">"cep_default"</span>,
+            <span class="t-string">"Order"</span>: <span class="t-string">"BottomUp"</span>,
+            <span class="t-string">"MaxSummaryTokens"</span>: <span class="t-number">1024</span>
+        }
+    })
+
+    <span class="t-builtin">print</span>(result[<span class="t-string">"Summary"</span>])</code></pre>
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="tab-summarize-javascript">
+                        <div class="code-block">
+                            <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+<pre><code><span class="t-comment">// Summarize text without chunking or embedding</span>
+<span class="t-keyword">const</span> result = <span class="t-keyword">await</span> client.summarize({
+  Text: <span class="t-string">'A long article that needs to be condensed...'</span>,
+  SummarizationConfiguration: {
+    CompletionEndpointId: <span class="t-string">'cep_default'</span>,
+    Order: <span class="t-string">'BottomUp'</span>,
+    MaxSummaryTokens: <span class="t-number">1024</span>
+  }
+});
+
+console.log(result.Summary);</code></pre>
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="tab-summarize-csharp">
+                        <div class="code-block">
+                            <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+<pre><code><span class="t-comment">// Summarize text without chunking or embedding</span>
+<span class="t-keyword">var</span> result = <span class="t-keyword">await</span> client.SummarizeAsync(<span class="t-keyword">new</span> SummarizeRequest
+{
+    Text = <span class="t-string">"A long article that needs to be condensed..."</span>,
+    SummarizationConfiguration = <span class="t-keyword">new</span> SummarizationConfiguration
+    {
+        CompletionEndpointId = <span class="t-string">"cep_default"</span>,
+        Order = <span class="t-string">"BottomUp"</span>,
+        MaxSummaryTokens = <span class="t-number">1024</span>
+    }
+});</code></pre>
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -621,6 +827,7 @@ console.log(<span class="t-string">`Chunks: ${result.Chunks.length}`</span>);</c
     <section class="strategies" id="summarization-strategies">
         <div class="container">
             <div class="section-header">
+                <span class="eyebrow">Summarization</span>
                 <h2>Summarization Strategies</h2>
                 <p>Optionally summarize your content before chunking and embedding. Partio uses LLM-powered inference endpoints to generate intelligent summaries.</p>
             </div>
@@ -643,6 +850,7 @@ console.log(<span class="t-string">`Chunks: ${result.Chunks.length}`</span>);</c
     <section class="strategies" id="strategies">
         <div class="container">
             <div class="section-header">
+                <span class="eyebrow">Chunking</span>
                 <h2>Chunking Strategies</h2>
                 <p>Choose the right chunking strategy for your content type. Mix and match across different document sections.</p>
             </div>
@@ -710,6 +918,7 @@ console.log(<span class="t-string">`Chunks: ${result.Chunks.length}`</span>);</c
     <section class="getting-started" id="getting-started">
         <div class="container">
             <div class="section-header">
+                <span class="eyebrow">Deployment</span>
                 <h2>Get Started in Minutes</h2>
                 <p>Choose your preferred deployment method. Partio runs anywhere Docker runs.</p>
             </div>
@@ -781,7 +990,7 @@ curl http://localhost:11434/api/pull -d "{\"name\": \"gemma3:4b\"}"</code></pre>
                                         <button class="copy-btn" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
 <pre><code><span class="t-comment"># Server health check</span>
 curl http://localhost:8400/
-<span class="t-output">{"Status":"Healthy","Version":"0.2.0"}</span>
+<span class="t-output">{"Status":"Healthy","Version":"0.4.0"}</span>
 
 <span class="t-comment"># Open the dashboard</span>
 open http://localhost:8401</code></pre>
@@ -886,8 +1095,27 @@ npm run dev</code></pre>
     <section class="dashboard-section" id="dashboard">
         <div class="container">
             <div class="section-header">
+                <span class="eyebrow">React Admin Dashboard</span>
                 <h2>Manage Everything from the Dashboard</h2>
                 <p>A full-featured React admin dashboard for managing tenants, users, credentials, endpoints, and processing &mdash; all from your browser.</p>
+            </div>
+            <div class="dashboard-showcase">
+                <figure class="shot shot-wide">
+                    <img src="assets/dashboard-request-history.png" alt="Partio dashboard Request History view with request volume chart and success/failure summary cards" loading="lazy" width="1898" height="920">
+                    <figcaption><strong>Request History</strong> &mdash; volume over time with success and failure breakdowns, filterable by timeframe, request type, and endpoint.</figcaption>
+                </figure>
+                <figure class="shot">
+                    <img src="assets/dashboard-api-explorer.png" alt="Partio dashboard API Explorer showing an embedding request, tokenization profile, and resulting vector" loading="lazy" width="1898" height="920">
+                    <figcaption><strong>API Explorer</strong> &mdash; run embedding or inference requests through Partio and inspect the resolved tokenization profile and upstream exchange.</figcaption>
+                </figure>
+                <figure class="shot">
+                    <img src="assets/dashboard-process-cells.png" alt="Partio dashboard Process Cells playground showing text chunked into hierarchical cells with embeddings" loading="lazy" width="1898" height="920">
+                    <figcaption><strong>Process Cells</strong> &mdash; submit text, choose a chunking strategy, optionally summarize, and preview hierarchical cells with embeddings.</figcaption>
+                </figure>
+                <figure class="shot">
+                    <img src="assets/dashboard-edit-endpoint.png" alt="Partio dashboard Edit Inference Endpoint dialog with connection, metadata, and options fields" loading="lazy" width="873" height="796">
+                    <figcaption><strong>Endpoint Configuration</strong> &mdash; connect Ollama, OpenAI, Gemini, or vLLM with per-endpoint timeouts, concurrency, health checks, and tokenization.</figcaption>
+                </figure>
             </div>
             <div class="dashboard-features">
                 <div class="dashboard-feature-grid">
@@ -916,8 +1144,8 @@ npm run dev</code></pre>
                         <div class="dashboard-card-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
                         </div>
-                        <h4>Live Processing Tool</h4>
-                        <p>Test chunking and embedding directly in the browser. Select strategies, configure parameters, and inspect results with a built-in JSON viewer.</p>
+                        <h4>Live Processing Playground</h4>
+                        <p>Run the full pipeline or isolate a single stage with Process, Chunk only, and Embed only modes. Select strategies, configure parameters, and inspect results with a built-in JSON viewer.</p>
                     </div>
                     <div class="dashboard-card">
                         <div class="dashboard-card-icon">
@@ -942,6 +1170,7 @@ npm run dev</code></pre>
     <section class="sdks" id="sdks">
         <div class="container">
             <div class="section-header">
+                <span class="eyebrow">Client Libraries</span>
                 <h2>SDKs for Every Language</h2>
                 <p>Native clients with full API coverage. 30+ methods per SDK, consistent interfaces, and idiomatic patterns for each language.</p>
             </div>
@@ -1014,8 +1243,9 @@ npm run dev</code></pre>
     <section class="api-section" id="api">
         <div class="container">
             <div class="section-header">
+                <span class="eyebrow">REST API &middot; v0.4.0</span>
                 <h2>RESTful API</h2>
-                <p>A clean, consistent API with full CRUD operations, pagination, and comprehensive error handling.</p>
+                <p>A clean, consistent API covering the full pipeline, standalone stage endpoints, endpoint diagnostics, model loading, CRUD administration, and request auditing &mdash; with pagination and comprehensive error handling throughout.</p>
             </div>
             <div class="api-groups">
                 <div class="api-group">
@@ -1052,7 +1282,7 @@ npm run dev</code></pre>
                                 <span class="api-method post">POST</span>
                                 <code>/v1.0/process</code>
                             </div>
-                            <span class="api-desc">Chunk &amp; embed a single document</span>
+                            <span class="api-desc">Summarize, chunk &amp; embed a document</span>
                         </div>
                         <div class="api-endpoint">
                             <div class="api-endpoint-route">
@@ -1060,6 +1290,60 @@ npm run dev</code></pre>
                                 <code>/v1.0/process/batch</code>
                             </div>
                             <span class="api-desc">Batch process multiple documents</span>
+                        </div>
+                        <div class="api-endpoint">
+                            <div class="api-endpoint-route">
+                                <span class="api-method post">POST</span>
+                                <code>/v1.0/chunk</code>
+                            </div>
+                            <span class="api-desc">Chunk only &mdash; no embedding endpoint</span>
+                        </div>
+                        <div class="api-endpoint">
+                            <div class="api-endpoint-route">
+                                <span class="api-method post">POST</span>
+                                <code>/v1.0/embed</code>
+                            </div>
+                            <span class="api-desc">Embed only &mdash; batch of strings</span>
+                        </div>
+                        <div class="api-endpoint">
+                            <div class="api-endpoint-route">
+                                <span class="api-method post">POST</span>
+                                <code>/v1.0/summarize</code>
+                            </div>
+                            <span class="api-desc">Summarize only &mdash; via completion endpoint</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="api-group">
+                    <h4 class="api-group-title">Explorer &amp; Model Loading</h4>
+                    <div class="api-endpoints">
+                        <div class="api-endpoint">
+                            <div class="api-endpoint-route">
+                                <span class="api-method post">POST</span>
+                                <code>/v1.0/explorer/embedding</code>
+                            </div>
+                            <span class="api-desc">Exercise an embedding endpoint</span>
+                        </div>
+                        <div class="api-endpoint">
+                            <div class="api-endpoint-route">
+                                <span class="api-method post">POST</span>
+                                <code>/v1.0/explorer/completion</code>
+                            </div>
+                            <span class="api-desc">Exercise an inference endpoint</span>
+                        </div>
+                        <div class="api-endpoint">
+                            <div class="api-endpoint-route">
+                                <span class="api-method post">POST</span>
+                                <code>/v1.0/endpoints/embedding/{id}/load</code>
+                            </div>
+                            <span class="api-desc">Load / warm an embedding model</span>
+                        </div>
+                        <div class="api-endpoint">
+                            <div class="api-endpoint-route">
+                                <span class="api-method post">POST</span>
+                                <code>/v1.0/endpoints/completion/{id}/load</code>
+                            </div>
+                            <span class="api-desc">Load / warm an inference model</span>
                         </div>
                     </div>
                 </div>
@@ -1125,14 +1409,47 @@ npm run dev</code></pre>
                                 <span class="api-method get">GET</span>
                                 <code>/v1.0/endpoints/completion/{id}/health</code>
                             </div>
-                            <span class="api-desc">Single completion endpoint health</span>
+                            <span class="api-desc">Single inference endpoint health</span>
                         </div>
                         <div class="api-endpoint">
                             <div class="api-endpoint-route">
                                 <span class="api-method get">GET</span>
                                 <code>/v1.0/endpoints/completion/health</code>
                             </div>
-                            <span class="api-desc">All completion endpoints health</span>
+                            <span class="api-desc">All inference endpoints health</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="api-group">
+                    <h4 class="api-group-title">Request History</h4>
+                    <div class="api-endpoints">
+                        <div class="api-endpoint">
+                            <div class="api-endpoint-route">
+                                <span class="api-method get">GET</span>
+                                <code>/v1.0/requests/{id}</code>
+                            </div>
+                            <span class="api-desc">Read a request history entry</span>
+                        </div>
+                        <div class="api-endpoint">
+                            <div class="api-endpoint-route">
+                                <span class="api-method get">GET</span>
+                                <code>/v1.0/requests/{id}/detail</code>
+                            </div>
+                            <span class="api-desc">Request / response &amp; upstream call detail</span>
+                        </div>
+                        <div class="api-endpoint">
+                            <div class="api-endpoint-route">
+                                <span class="api-method post">POST</span>
+                                <code>/v1.0/requests/enumerate</code>
+                            </div>
+                            <span class="api-desc">List request history (paged)</span>
+                        </div>
+                        <div class="api-endpoint">
+                            <div class="api-endpoint-route">
+                                <span class="api-method post">POST</span>
+                                <code>/v1.0/requests/statistics</code>
+                            </div>
+                            <span class="api-desc">Aggregated success / failure stats</span>
                         </div>
                     </div>
                 </div>
@@ -1149,6 +1466,7 @@ npm run dev</code></pre>
     <section class="databases" id="databases">
         <div class="container">
             <div class="section-header">
+                <span class="eyebrow">Persistence</span>
                 <h2>Your Database, Your Choice</h2>
                 <p>Partio supports four database backends. Start with SQLite for zero-config development, scale to PostgreSQL or SQL Server for production.</p>
             </div>

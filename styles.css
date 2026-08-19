@@ -24,21 +24,21 @@
 
 /* Dark theme (default) */
 [data-theme="dark"] {
-    --bg-primary: #0a0a12;
-    --bg-secondary: #12121e;
-    --bg-tertiary: #1a1a2a;
-    --bg-card: #151524;
-    --bg-card-hover: #1c1c32;
-    --bg-code: #0d0d18;
-    --bg-nav: rgba(10, 10, 18, 0.85);
+    --bg-primary: #050507;
+    --bg-secondary: #0a0a10;
+    --bg-tertiary: #14141e;
+    --bg-card: #0d0d15;
+    --bg-card-hover: #15151f;
+    --bg-code: #08080d;
+    --bg-nav: rgba(5, 5, 7, 0.8);
 
-    --text-primary: #f0f0f8;
-    --text-secondary: #a0a0b8;
-    --text-tertiary: #6a6a82;
-    --text-inverse: #0a0a12;
+    --text-primary: #f4f4f8;
+    --text-secondary: #9a9aac;
+    --text-tertiary: #63636f;
+    --text-inverse: #050507;
 
-    --border: #2a2a3e;
-    --border-light: #1e1e32;
+    --border: #212129;
+    --border-light: #16161c;
 
     --accent: #6366f1;
     --accent-light: #818cf8;
@@ -164,19 +164,52 @@ img {
 
 .section-header {
     text-align: center;
-    max-width: 700px;
+    max-width: 720px;
     margin: 0 auto 56px;
 }
 .section-header h2 {
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-size: clamp(1.9rem, 3.4vw, 2.75rem);
     font-weight: 800;
-    letter-spacing: -0.02em;
-    margin-bottom: 12px;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    margin-bottom: 14px;
 }
 .section-header p {
     font-size: 1.1rem;
     color: var(--text-secondary);
     line-height: 1.7;
+}
+
+/* Eyebrow micro-label (x.ai / SpaceX style) */
+.eyebrow {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--accent-light);
+    margin-bottom: 16px;
+    position: relative;
+    padding-left: 26px;
+}
+.eyebrow::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 18px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-light));
+}
+.section-header .eyebrow::before {
+    left: 50%;
+    transform: translateX(-50%);
+    top: -8px;
+    width: 40px;
+    background: linear-gradient(90deg, transparent, var(--accent-light), transparent);
+}
+.section-header .eyebrow {
+    padding-left: 0;
 }
 
 /* --- Theme Toggles --- */
@@ -279,8 +312,10 @@ img {
 }
 .nav-links a {
     color: var(--text-secondary);
-    font-size: 0.875rem;
-    font-weight: 500;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
     padding: 6px 14px;
     border-radius: var(--radius-sm);
     transition: all var(--transition);
@@ -350,6 +385,27 @@ img {
     height: 800px;
     background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
     pointer-events: none;
+}
+/* Predominantly transparent hero background image */
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('assets/hero-bg.svg');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    opacity: 0.9;
+    pointer-events: none;
+    z-index: 0;
+    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+}
+[data-theme="light"] .hero-bg {
+    opacity: 0.55;
+}
+.hero .container {
+    position: relative;
+    z-index: 1;
 }
 .hero .container {
     display: grid;
@@ -836,6 +892,64 @@ img {
     border-color: var(--green);
 }
 
+/* Example mode selector (Full pipeline / Chunk / Embed / Summarize) */
+.example-modes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    max-width: 800px;
+    margin: 0 auto 28px;
+}
+.mode-btn {
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    padding: 9px 18px;
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+.mode-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--accent);
+}
+.mode-btn.active {
+    color: white;
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 2px 12px rgba(99, 102, 241, 0.35);
+}
+.example-mode {
+    display: none;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.example-mode.active {
+    display: block;
+    animation: fadeInUp 0.35s ease;
+}
+.example-lead {
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 680px;
+    margin: 0 auto 20px;
+}
+.example-lead code {
+    color: var(--accent-light);
+    background: var(--accent-bg);
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 /* ============================================================
    CHUNKING STRATEGIES
    ============================================================ */
@@ -944,6 +1058,48 @@ img {
     padding: 100px 0;
     background: var(--bg-secondary);
 }
+
+/* Screenshot showcase */
+.dashboard-showcase {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 56px;
+}
+.shot {
+    margin: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all var(--transition);
+}
+.shot:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+.shot-wide {
+    grid-column: 1 / -1;
+}
+.shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid var(--border);
+    background: #f5f5fa;
+}
+.shot figcaption {
+    padding: 16px 20px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+.shot figcaption strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
 .dashboard-feature-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1362,6 +1518,7 @@ img {
     .use-cases-grid,
     .strategies-grid,
     .dashboard-feature-grid,
+    .dashboard-showcase,
     .sdk-grid,
     .api-groups,
     .db-grid {

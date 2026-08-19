@@ -77,6 +77,24 @@
         });
     });
 
+    // --- Example Mode Selector (Full pipeline / Chunk / Embed / Summarize) ---
+    var exampleModes = document.getElementById('exampleModes');
+    if (exampleModes) {
+        var modeButtons = exampleModes.querySelectorAll('.mode-btn');
+        modeButtons.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var target = btn.getAttribute('data-mode');
+
+                modeButtons.forEach(function (b) { b.classList.remove('active'); });
+                btn.classList.add('active');
+
+                document.querySelectorAll('.example-mode').forEach(function (panel) {
+                    panel.classList.toggle('active', panel.id === 'mode-' + target);
+                });
+            });
+        });
+    }
+
     // --- Copy to Clipboard ---
     document.querySelectorAll('.copy-btn').forEach(function (btn) {
         btn.addEventListener('click', function () {
