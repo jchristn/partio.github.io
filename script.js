@@ -10,9 +10,9 @@
     const html = document.documentElement;
 
     function getPreferredTheme() {
+        // Default to dark mode; only honor an explicit user choice.
         const stored = localStorage.getItem('partio-theme');
-        if (stored) return stored;
-        return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        return stored === 'light' || stored === 'dark' ? stored : 'dark';
     }
 
     function setTheme(theme) {
@@ -27,11 +27,6 @@
         setTheme(current === 'dark' ? 'light' : 'dark');
     });
 
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
-        if (!localStorage.getItem('partio-theme')) {
-            setTheme(e.matches ? 'dark' : 'light');
-        }
-    });
 
     // --- Mobile Navigation ---
     const hamburger = document.getElementById('hamburger');
